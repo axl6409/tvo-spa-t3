@@ -1,0 +1,5 @@
+import './axios'
+import './fontawesome'
+import './i18n'
+import './v-tooltip'
+import 'bootstrap'
