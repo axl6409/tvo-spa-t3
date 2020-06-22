@@ -6,6 +6,8 @@
     "type": "project",
     "require": {
         "php": "^7.2.5",
+        "ext-curl": "*",
+        "barryvdh/laravel-debugbar": "^3.3",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",

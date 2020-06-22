@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container">
-      <router-link :to="{ name: user ? 'home' : 'welcome' }" class="navbar-brand">
+      <router-link :to="{ name: 'welcome' }" class="navbar-brand">
         {{ appName }}
       </router-link>
 
@@ -27,25 +27,18 @@
               {{ user.name }}
             </a>
             <div class="dropdown-menu">
-              <router-link :to="{ name: 'settings.profile' }" class="dropdown-item pl-3">
-                <fa icon="cog" fixed-width />
-                {{ $t('settings') }}
-              </router-link>
-
               <div class="dropdown-divider" />
               <a href="#" class="dropdown-item pl-3" @click.prevent="logout">
                 <fa icon="sign-out-alt" fixed-width />
                 {{ $t('logout') }}
               </a>
+              <router-link :to="{ name: 'character' }" class="nav-link" active-class="active">
+                {{ $t('character') }}
+              </router-link>
             </div>
           </li>
           <!-- Guest -->
           <template v-else>
-            <li class="nav-item">
-              <router-link :to="{ name: 'about' }" class="nav-link" active-class="active">
-                {{ $t('about') }}
-              </router-link>
-            </li>
             <li class="nav-item">
               <router-link :to="{ name: 'login' }" class="nav-link" active-class="active">
                 {{ $t('login') }}
@@ -66,6 +59,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
+import Cookies from 'js-cookie'
 
 export default {
   components: {
@@ -84,7 +78,8 @@ export default {
     async logout () {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
-
+      Cookies.remove()
+      console.log(Cookies.get())
       // Redirect to login.
       this.$router.push({ name: 'login' })
     }

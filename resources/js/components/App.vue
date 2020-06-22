@@ -5,6 +5,7 @@
     <transition name="page" mode="out-in">
       <component :is="layout" v-if="layout" />
     </transition>
+
   </div>
 </template>
 

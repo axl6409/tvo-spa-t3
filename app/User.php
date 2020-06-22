@@ -32,14 +32,6 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 
     /**
      * The accessors to append to the model's array form.
@@ -107,7 +99,4 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         return [];
     }
 
-    public function destinyUserInfos() {
-        BungieProvider::getUserCaracters();
-    }
 }

@@ -21,7 +21,6 @@ class OAuthController extends Controller
     public function __construct()
     {
         config([
-            'services.github.redirect' => route('oauth.callback', 'github'),
             'services.bungie.redirect' => route('oauth.callback', 'bungie'),
         ]);
     }
@@ -106,7 +105,7 @@ class OAuthController extends Controller
 
         $user->oauthProviders()->create([
             'provider' => $provider,
-            'provider_user_id' => $sUser->getBungieId(),
+            'provider_bungie_id' => $sUser->getBungieId(),
             'access_token' => $sUser->token,
             'refresh_token' => $sUser->refreshToken,
         ]);
