@@ -32,8 +32,11 @@
                 <fa icon="sign-out-alt" fixed-width />
                 {{ $t('logout') }}
               </a>
-              <router-link :to="{ name: 'character' }" class="nav-link" active-class="active">
-                {{ $t('character') }}
+              <router-link :to="{ name: 'dashboard' }" class="nav-link" active-class="active">
+                {{ $t('dashboard') }}
+              </router-link>
+              <router-link :to="{ name: 'admin' }" class="nav-link" active-class="active">
+                {{ $t('admin') }}
               </router-link>
             </div>
           </li>

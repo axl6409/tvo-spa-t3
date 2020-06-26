@@ -10,7 +10,10 @@ export default [
   { path: '/register', name: 'register', component: page('auth/register.vue') },
 
   { path: '/home', name: 'home', component: page('home.vue') },
-  { path: '/character', name: 'character', component: page('frontend/profile/character.vue') },
+  { path: '/dashboard', name: 'dashboard', component: page('frontend/profile/dashboard.vue') },
+
+  // Admin Pages
+  { path: '/admin', name: 'admin', component: page('backend/admin/index.vue') },
 
   { path: '*', component: page('errors/404.vue') }
 ]

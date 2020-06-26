@@ -15,7 +15,9 @@
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "tymon/jwt-auth": "^1.0.0"
+        "tymon/jwt-auth": "^1.0.0",
+        "ext-zip": "*",
+        "ext-sqlite3": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.4.0",

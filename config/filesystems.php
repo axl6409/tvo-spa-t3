@@ -64,9 +64,7 @@ return [
 
         'bungie' => [
           'driver' => 'local',
-          'root' => storage_path('app/bungie'),
-          'url' => env('APP_URL').'/storage',
-          'visibility' => 'public',
+          'root' => database_path('sqlite'),
         ],
 
         's3' => [

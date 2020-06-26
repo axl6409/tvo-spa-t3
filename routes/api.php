@@ -19,8 +19,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/home', 'Frontend\HomeController@home');
     Route::get('/user', 'Auth\UserController@current');
     Route::get('/profile', 'Bungie\ProfileController@index');
-    Route::get('/manifest', 'Bungie\ManifestController@getManifest');
-
+    Route::prefix('/manifest')->group( function () {
+      Route::get('/check', 'Bungie\ManifestController@checkManifest');
+      Route::post('/query', 'Bungie\ManifestController@queryManifest');
+    });
+    Route::prefix('/characters')->group( function () {
+        Route::get('/all', 'Bungie\CharacterController@allCharacters');
+    });
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
