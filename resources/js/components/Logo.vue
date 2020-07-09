@@ -59,13 +59,17 @@ export default {
     return {}
   },
   mounted () {
-    function logoAnimation () {
+    this.logoAnimation()
+  },
+
+  methods: {
+    logoAnimation () {
       var svgLogo = document.getElementsByClassName('svg-logo')
       var exagons = document.getElementsByClassName('exagon')
       var entrance = anime.timeline({
         easing: 'linear',
         duration: 1000,
-        fini: logoRotation(exagons)
+        fini: this.logoRotation(exagons)
       })
       entrance
         .add({
@@ -102,8 +106,8 @@ export default {
           delay: 100,
           direction: 'linear'
         }, 200)
-    }
-    function logoRotation (element) {
+    },
+    logoRotation (element) {
       var loopBegan = 1000
       var loopCompleted = 0
 
@@ -117,7 +121,6 @@ export default {
         endDelay: 1500
       })
     }
-    document.addEventListener('DOMContentLoaded', logoAnimation)
   }
 }
 </script>

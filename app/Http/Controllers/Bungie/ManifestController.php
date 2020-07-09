@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Bungie;
 
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use SQLite3;
 use ZipArchive;
 
 class ManifestController extends Controller
@@ -18,8 +20,18 @@ class ManifestController extends Controller
     protected $originalNameWithoutExt = "";
     protected $localManifest = "";
     protected $localNameWithoutExt = "";
+    protected $tables = [];
+    protected $storage;
 
-    public function queryManifest()
+    protected $test;
+
+    public function __construct()
+    {
+        $this->storage = Storage::disk('bungie')->allFiles();
+        $this->localManifest = $this->storage[0];
+    }
+
+    public function initManifest()
     {
         $file = Storage::disk('bungie')->allFiles();
         $manifest = pathinfo(database_path('/sqlite/'.$file[0]), PATHINFO_BASENAME);
@@ -110,19 +122,57 @@ class ManifestController extends Controller
         ];
         $client->get($this->url2.$url, $headers);
 
-        /**
-        $tables = array();
-        if ($db = new SQLite3($file_path)) {
-        $result = $db->query("SELECT name FROM sqlite_master WHERE type='table'");
-        while($row = $result->fetchArray()) {
-        $table = array();
-        $result2 = $db->query("PRAGMA table_info(".$row['name'].")");
-        while($row2 = $result2->fetchArray()) {
-        $table[] = $row2[1];
+        if ($db = new SQLite3($this->localManifest)) {
+            $result = $db->query("SELECT name FROM sqlite_master WHERE type='table'");
+
+            while($row = $result->fetchArray()) {
+                $result2 = $db->query("PRAGMA table_info(".$row['name'].")");
+
+                while($row2 = $result2->fetchArray()) {
+                    $this->tables = $row2[1];
+                }
+            $this->tables[$row['name']] = $this->tables;
+            }
         }
-        $tables[$row['name']] = $table;
+
+        return $this->tables;
+    }
+
+    public function queryManifest($query) {
+
+        $results = array();
+        if ($db = DB::connection('sqlite')) {
+            $result = $db->select($query);
+            foreach ($results as $row)
+            {
+                $key = is_numeric($row[0]) ? sprintf('%u', $row[0] & 0xFFFFFFFF) : $row[0];
+                $results[$key] = json_decode($row[1]);
+            }
+
+            return $result;
         }
-        }
-         */
+
+        return $results;
+    }
+
+
+    public function getAllTables()
+    {
+        return $this->queryManifest('SELECT name FROM sqlite_master WHERE type=\'table\' ORDER BY name');
+    }
+
+    public function getDefinition($tableName) {
+        return $this->queryManifest('SELECT * FROM '.$tableName);
+    }
+
+    public function getSingleDefinition($tableName, $id) {
+
+        $tables = $this->getAllTables();
+        $key = $tables->{$tableName}[0];
+        $where = ' WHERE '.(is_numeric($id) ? $key.'='.$id.' OR '.$key.'='.($id-4294967296) : $key.'="'.$id.'"');
+        $results = $this->queryManifest('SELECT * FROM '.$tableName.$where);
+
+        return isset($results[$id]) ? $results[$id] : false;
+
     }
 }

@@ -2,11 +2,12 @@
   <div>
     <h1>Character Vue</h1>
     <ul>
-      <!--
-      <li v-for="character in characters" :key="character.emblemBackgroundPath">
-        <img :src="path + character.emblemBackgroundPath" alt="">
+      <li v-for="character in personages.datas" :key="character.emblemBackgroundPath">
+        <router-link :to="{ name: 'admin' }" class="nav-link" active-class="active">
+          {{ $t('admin') }}
+          <img :src="path + character.emblemBackgroundPath" alt="">
+        </router-link>
       </li>
-      -->
     </ul>
   </div>
 </template>
@@ -20,76 +21,84 @@ export default {
   data () {
     return {
       path: 'https://www.bungie.net/',
-      manifest: null
+      personages: {
+        characterIds: [],
+        datas: {}
+      }
     }
   },
 
-  computed: {
-    ...mapGetters('profile', {
-      characters: 'characters'
-    }),
-    ...mapGetters('auth', {
-      user: 'user'
-    })
-  },
+  computed: mapGetters({
+    user: 'auth/user',
+    characters: 'auth/characters'
+  }),
 
   created () {
-    this.init()
+    const instance = axios.create({
+      baseURL: 'https://www.bungie.net/Platform',
+      headers: {
+        'X-API-Key': 'd1cf7e1500084cfb8c11b7432556859f'
+      }
+    })
+    this.init(instance)
   },
 
   mounted () {
-
   },
 
   methods: {
 
-    init () {
-      const instance = axios.create({
-        baseURL: 'https://www.bungie.net/Platform',
-        headers: {
-          'X-API-Key': 'd1cf7e1500084cfb8c11b7432556859f'
-        }
-      })
-
+    init (instance) {
       this.memberInfos(instance)
+      this.manifestTables()
+      this.getDefinition('DestinyGenderDefinition')
+      this.hashTranslation('DestinyGenderDefinition', 3111576190)
     },
 
     memberInfos (instance) {
       let mbType = this.user.membership_type
       let mbId = this.user.membership_id
-      instance.get(`/Destiny2/${mbType}/Profile/${mbId}/?components=200`)
+      instance.get(`/Destiny2/${mbType}/Profile/${mbId}/?components=100,200`)
         .then((response) => {
-          const { data } = response.data.Response.characters.data
-          this.$store.dispatch('profile/updateCharacters', { characters: data })
-          console.log(this.characters)
+          console.log(response)
+          this.personages.datas = response.data.Response.characters.data
+          this.personages.characterIds = response.data.Response.profile.data.characterIds
+          /**
+           * Convert an object to array
+          const { resultArray } = Object.keys(items).map(function (key) {
+            return [Number(key), items[key]]
+          })
+           */
         })
-      this.test()
     },
 
-    test () {
-      axios.get('/api/characters/all').then((response) => { console.log(response) })
+    /**
+    charactersInfos () {
+      axios.get(`/api/profile/characters`)
+        .then((response) => {
+          console.log(response)
+        })
+    },
+     */
+
+    manifestTables () {
+      axios.get(`/api/manifest/tables`).then((response) => {
+        console.log(response)
+      })
     },
 
-    hashTanslation ($type, $hash) {
-      console.log(this.characters)
-      axios.post('/api/manifest/query')
-        .then((response) => {
-          console.log(response.data)
-        })
-        .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          } else if (error.request) {
-            console.log(error.request)
-          } else {
-            console.log(error.config)
-          }
-        })
+    hashTranslation (def, id) {
+      axios.get(`/api/manifest/query/${def}/${id}`).then((response) => {
+        console.log(response)
+      })
+    },
+
+    getDefinition (def) {
+      axios.get(`/api/manifest/definition/${def}`).then((response) => {
+        console.log(response)
+      })
     }
 
   }
-
 }
 </script>

@@ -21,10 +21,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/profile', 'Bungie\ProfileController@index');
     Route::prefix('/manifest')->group( function () {
       Route::get('/check', 'Bungie\ManifestController@checkManifest');
-      Route::post('/query', 'Bungie\ManifestController@queryManifest');
+      Route::get('/tables', 'Bungie\ManifestController@getAllTables');
+      Route::get('/query/{table}/{id}', 'Bungie\ManifestController@getSingleDefinition');
+      Route::get('/definition/{def}', 'Bungie\ManifestController@getDefinition');
     });
-    Route::prefix('/characters')->group( function () {
-        Route::get('/all', 'Bungie\CharacterController@allCharacters');
+    Route::prefix('/profile')->group( function () {
+        Route::get('/all', 'Bungie\ProfileController@index');
+        Route::get('/characters', 'Bungie\ProfileController@characters');
     });
 });
 

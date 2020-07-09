@@ -1,7 +1,7 @@
 <template>
   <div class="main-layout">
     <navbar />
-
+    <Logo />
     <div class="container mt-4">
       <child />
     </div>
@@ -10,12 +10,14 @@
 
 <script>
 import Navbar from '~/components/Navbar'
+import Logo from '~/components/Logo'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    Navbar
+    Navbar,
+    Logo
   }
 }
 </script>

@@ -11,6 +11,7 @@ export default [
 
   { path: '/home', name: 'home', component: page('home.vue') },
   { path: '/dashboard', name: 'dashboard', component: page('frontend/profile/dashboard.vue') },
+  { path: '/character', name: 'character', component: page('frontend/profile/character.vue') },
 
   // Admin Pages
   { path: '/admin', name: 'admin', component: page('backend/admin/index.vue') },
