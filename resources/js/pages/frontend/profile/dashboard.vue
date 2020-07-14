@@ -8,6 +8,7 @@
           <img :src="path + character.emblemBackgroundPath" alt="">
         </router-link>
       </li>
+      <p>{{ this.profile }}</p>
     </ul>
   </div>
 </template>
@@ -30,10 +31,12 @@ export default {
 
   computed: mapGetters({
     user: 'auth/user',
-    characters: 'auth/characters'
+    profile: 'profile/profile',
+    authenticated: 'auth/check'
   }),
 
   created () {
+    this.$store.dispatch('profile/fetchProfile')
     const instance = axios.create({
       baseURL: 'https://www.bungie.net/Platform',
       headers: {
@@ -49,20 +52,25 @@ export default {
   methods: {
 
     init (instance) {
+      console.log(this.user)
       this.memberInfos(instance)
       this.manifestTables()
       this.getDefinition('DestinyGenderDefinition')
-      this.hashTranslation('DestinyGenderDefinition', 3111576190)
+      this.hashTranslation('DestinyClassDefinition', 671679327)
     },
 
     memberInfos (instance) {
       let mbType = this.user.membership_type
       let mbId = this.user.membership_id
-      instance.get(`/Destiny2/${mbType}/Profile/${mbId}/?components=100,200`)
+      instance.get(`/Destiny2/${mbType}/Profile/${mbId}/?components=100`)
         .then((response) => {
-          console.log(response)
-          this.personages.datas = response.data.Response.characters.data
           this.personages.characterIds = response.data.Response.profile.data.characterIds
+          this.personages.characterIds.forEach(function (item) {
+            axios.get(`/api/profile/characters/${item}`).then((response) => {
+              let emblem = response.data.Response.character.data.emblemBackgroundPath
+              console.log(emblem)
+            })
+          })
           /**
            * Convert an object to array
           const { resultArray } = Object.keys(items).map(function (key) {
@@ -72,24 +80,17 @@ export default {
         })
     },
 
-    /**
-    charactersInfos () {
-      axios.get(`/api/profile/characters`)
-        .then((response) => {
-          console.log(response)
-        })
-    },
-     */
-
     manifestTables () {
-      axios.get(`/api/manifest/tables`).then((response) => {
+      axios.get(`/api/profile/all`).then((response) => {
         console.log(response)
       })
     },
 
     hashTranslation (def, id) {
       axios.get(`/api/manifest/query/${def}/${id}`).then((response) => {
-        console.log(response)
+        let result = response.data['0']['json']
+        let result2 = JSON.parse(result)
+        console.log(result2)
       })
     },
 

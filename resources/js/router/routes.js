@@ -10,6 +10,7 @@ export default [
   { path: '/register', name: 'register', component: page('auth/register.vue') },
 
   { path: '/home', name: 'home', component: page('home.vue') },
+  { path: '/profile', name: 'profile', component: page('settings/profile.vue') },
   { path: '/dashboard', name: 'dashboard', component: page('frontend/profile/dashboard.vue') },
   { path: '/character', name: 'character', component: page('frontend/profile/character.vue') },
 

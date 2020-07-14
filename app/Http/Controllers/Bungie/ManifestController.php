@@ -28,7 +28,6 @@ class ManifestController extends Controller
     public function __construct()
     {
         $this->storage = Storage::disk('bungie')->allFiles();
-        $this->localManifest = $this->storage[0];
     }
 
     public function initManifest()
@@ -65,7 +64,7 @@ class ManifestController extends Controller
           $this->updateManifest($this->manifestUrl);
           $this->extractManifest($this->manifestNameToZip);
           $this->localManifest = Storage::disk('bungie')->get($this->originalNameWithoutExt.'.sqlite');
-          return 'Manifest Updated !';
+          return 'Manifest Updated !'.$this->tables;
 
         }
 
@@ -105,7 +104,8 @@ class ManifestController extends Controller
         }
 
         $this->localNameWithoutExt = pathinfo(database_path('/sqlite/'.$this->localManifest), PATHINFO_FILENAME);
-        rename(database_path('/sqlite/'.$this->originalManifestName), database_path('/sqlite/'.$this->originalNameWithoutExt.'.sqlite'));
+        rename(env('DB_PATH_SQLITE').$this->originalManifestName, env('DB_PATH_SQLITE').$this->originalNameWithoutExt.'.sqlite');
+
     }
 
     public function updateManifest($url)
@@ -122,20 +122,18 @@ class ManifestController extends Controller
         ];
         $client->get($this->url2.$url, $headers);
 
-        if ($db = new SQLite3($this->localManifest)) {
-            $result = $db->query("SELECT name FROM sqlite_master WHERE type='table'");
-
-            while($row = $result->fetchArray()) {
-                $result2 = $db->query("PRAGMA table_info(".$row['name'].")");
-
-                while($row2 = $result2->fetchArray()) {
+        if ($db = DB::connection('sqlite')) {
+            $result = $db->select("SELECT name FROM sqlite_master WHERE type='table'");
+            foreach($result as $row) {
+                $result2 = $db->select("PRAGMA table_info(".$row['name'].")");
+                foreach($result2 as $row2) {
                     $this->tables = $row2[1];
                 }
             $this->tables[$row['name']] = $this->tables;
             }
         }
-
         return $this->tables;
+
     }
 
     public function queryManifest($query) {
@@ -167,12 +165,18 @@ class ManifestController extends Controller
 
     public function getSingleDefinition($tableName, $id) {
 
+        $where = ' WHERE '.(is_numeric($id) ? 'id = '.$id.' OR id ='.($id-4294967296) : ' id = "'.$id.'"');
+        $results = $this->queryManifest('SELECT json FROM '.$tableName.$where);
+        return $results;
+
+        /**
         $tables = $this->getAllTables();
-        $key = $tables->{$tableName}[0];
-        $where = ' WHERE '.(is_numeric($id) ? $key.'='.$id.' OR '.$key.'='.($id-4294967296) : $key.'="'.$id.'"');
-        $results = $this->queryManifest('SELECT * FROM '.$tableName.$where);
+
+        $where = ' WHERE '.(is_numeric($id) ? 'id = '.$id.' OR id = '.($id-4294967296) : ' id = "'.$id.'"');
+        $results = $this->queryManifest('SELECT * FROM '.$tableName.' WHERE id='.$id-4294967296);
 
         return isset($results[$id]) ? $results[$id] : false;
+         */
 
     }
 }

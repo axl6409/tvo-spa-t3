@@ -9,4 +9,5 @@ export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE'
 export const SET_LOCALE = 'SET_LOCALE'
 
 // profile.js
-export const SET_CHARACTERS = 'SET_CHARACTERS'
+export const PROFILE_SUCCESS = 'PROFILE_SUCCESS'
+export const PROFILE_FAILURE = 'PROFILE_FAILURE'

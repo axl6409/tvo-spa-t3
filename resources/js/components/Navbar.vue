@@ -32,6 +32,10 @@
                 <fa icon="sign-out-alt" fixed-width />
                 {{ $t('logout') }}
               </a>
+              <router-link :to="{ name: 'profile' }" class="dropdown-item pl-3">
+                <fa icon="cog" fixed-width />
+                {{ $t('settings') }}
+              </router-link>
               <router-link :to="{ name: 'dashboard' }" class="nav-link" active-class="active">
                 {{ $t('dashboard') }}
               </router-link>
