@@ -30,7 +30,7 @@ class ProfileController extends Controller
         return $this->characters;
     }
 
-    public function characterIds()
+    public function profileDatas()
     {
         $user = Auth::user();
         $result = $this->doRequest($this->url.'/Destiny2/'.$user->membership_type.'/Profile/'.$user->membership_id.'/?components=100,200');

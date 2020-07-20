@@ -1,14 +1,20 @@
 <template>
-  <div class="character-section">
-    <h1 class="character-page-title">Personnages</h1>
-    <ul>
-      <li class="character-list-item" v-for="character in characters">
-        <router-link :to="{ name: 'admin' }" class="nav-link" active-class="active">
-          <!--<img :src="path + characters.infos" alt="">-->
-          <character-card :character="character"/>
-        </router-link>
-      </li>
-    </ul>
+  <div>
+    <div class="character-section">
+      <h2 class="character-page-title">Personnages</h2>
+      <ul>
+        <li class="character-list-item" v-for="character in characters">
+          <router-link :to="{ name: 'admin' }" class="nav-link" active-class="active">
+            <!--<img :src="path + characters.infos" alt="">-->
+            <character-card :character="character"/>
+          </router-link>
+        </li>
+      </ul>
+    </div>
+    <div class="profil-section">
+      <h2>Profil Stats</h2>
+      <user-stats></user-stats>
+    </div>
   </div>
 </template>
 
@@ -16,18 +22,21 @@
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 import CharacterCard from '../../../components/CharacterCard'
+import UserStats from '../../../components/UserStats'
 
 export default {
 
   components: {
-    CharacterCard
+    CharacterCard,
+    UserStats
   },
 
   data () {
     return {
       path: 'https://www.bungie.net/',
       characters: {},
-      charactersDatas: {}
+      charactersDatas: {},
+      profile: {}
     }
   },
 
@@ -41,30 +50,12 @@ export default {
       this.characters = response.data.profile.data.characterIds
       console.log(this.characterIds)
     })
-    const instance = axios.create({
-      baseURL: 'https://www.bungie.net/Platform',
-      headers: {
-        'X-API-Key': 'd1cf7e1500084cfb8c11b7432556859f'
-      }
-    })
-    this.init(instance)
   },
 
   mounted () {
   },
 
   methods: {
-
-    init (instance) {
-      this.memberInfos()
-    },
-
-    memberInfos () {
-      axios.get(`/api/profile/characterIds`)
-        .then((response) => {
-          this.characters.characterIds = response.data
-        })
-    }
 
   }
 }
