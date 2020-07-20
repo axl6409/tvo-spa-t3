@@ -2,7 +2,7 @@
   <div class="main-layout">
     <navbar />
     <Logo />
-    <div class="container mt-4">
+    <div class="main-container">
       <child />
     </div>
   </div>

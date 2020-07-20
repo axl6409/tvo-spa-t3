@@ -25,8 +25,16 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $result = $this->doRequest($this->url.'/Destiny2/'.$user->membership_type.'/Profile/'.$user->membership_id.'/?components=100');
-        $this->characters = $result['Response']['profile']['data']['characterIds'];
+        $result = $this->doRequest($this->url.'/Destiny2/'.$user->membership_type.'/Profile/'.$user->membership_id.'/?components=100,200');
+        $this->characters = $result['Response'];
+        return $this->characters;
+    }
+
+    public function characterIds()
+    {
+        $user = Auth::user();
+        $result = $this->doRequest($this->url.'/Destiny2/'.$user->membership_type.'/Profile/'.$user->membership_id.'/?components=100,200');
+        $this->characters = $result['Response']['profile']['data'];
         return $this->characters;
     }
 

@@ -78,7 +78,8 @@ export default {
   }),
 
   computed: mapGetters({
-    user: 'auth/user'
+    user: 'auth/user',
+    characters: 'profile/profile'
   }),
 
   methods: {

@@ -27,7 +27,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
     Route::prefix('/profile')->group( function () {
         Route::get('/all', 'Bungie\ProfileController@index');
-        Route::get('/characters/{id}', 'Bungie\ProfileController@getCharacterInfos');
+        Route::get('/characterIds', 'Bungie\ProfileController@characterIds');
+        Route::get('/character/{item}', 'Bungie\ProfileController@getCharacterInfos');
     });
 });
 

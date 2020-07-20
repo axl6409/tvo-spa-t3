@@ -54,7 +54,7 @@ export default {
         token: e.data.token
       })
 
-      this.$router.push({ name: 'home' })
+      this.$router.push({ name: 'dashboard' })
     }
   }
 }

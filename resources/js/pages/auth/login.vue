@@ -47,11 +47,9 @@ export default {
 
       // Fetch the user.
       await this.$store.dispatch('auth/fetchUser')
-      // Fetch the profile.
-      await this.$store.dispatch('profile/fetchProfile')
 
       // Redirect home.
-      this.$router.push({ name: 'home' })
+      this.$router.push({ name: 'dashboard' })
     }
   }
 }

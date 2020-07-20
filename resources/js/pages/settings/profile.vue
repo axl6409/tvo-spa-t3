@@ -61,6 +61,7 @@ export default {
     this.form.keys().forEach(key => {
       this.form[key] = this.user[key]
     })
+    console.log(this.$store)
   },
 
   methods: {
