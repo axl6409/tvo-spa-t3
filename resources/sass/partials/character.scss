@@ -1,0 +1,89 @@
+.single-character {
+  position: relative;
+  height: 150px;
+  width: 100%;
+  flex-basis: 100%;
+  padding: 40px 0 0;
+}
+
+.character-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.character-banner-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+
+.character-head-emblem {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  top: 30px;
+  left: 40px;
+}
+
+.character-head {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+.character-head-block {
+  position: relative;
+  width: 40%;
+  height: 110px;
+  left: 10%;
+}
+
+.character-head-block .character-head-display-name {
+  position: absolute;
+  color: white;
+  left: 35px;
+  top: 30px;
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.character-head-infos {
+  width: 100%;
+  top: 75px;
+  left: 40px;
+  height: 30px;
+  position: relative;
+}
+
+.character-infos-race {
+  position: absolute;
+  color: $grey0;
+  text-transform: uppercase;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.character-infos-race:before {
+  content: "//";
+  margin-right: 15px;
+}
+.character-infos-race:after {
+  content: "/";
+  margin-left: 15px;
+}
+
+.character-infos-light {
+  position: absolute;
+  color: $yellow0;
+  left: 150px;
+}

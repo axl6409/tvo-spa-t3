@@ -1,5 +1,6 @@
 body {
   background-color: #171717;
+  font-family: $mainFont;
 }
 
 h1, h2, h3, h4, p, a, div, span {
@@ -11,5 +12,25 @@ ul {
 }
 
 .main-container {
-
+  background-color: rgba(0,0,0,0.6);
 }
+
+.main-layout {
+  position: relative;
+  z-index: 98;
+}
+
+.dark-link {
+  color: #171717;
+}
+.dark-link:hover {
+  color: $yellow0;
+}
+
+.dark-text {
+  color: $black1;
+}
+.dark-text:hover {
+  color: $yellow0;
+}
+

@@ -17,7 +17,7 @@ export default {
     canSuccess: true,
     duration: 3000,
     height: '2px',
-    color: '#77b6ff',
+    color: '#d8d800',
     failedColor: 'red'
   }),
 
@@ -88,10 +88,10 @@ export default {
 <style scoped>
 .progress {
   position: fixed;
-  top: 0px;
+  top: 59px;
   left: 0px;
   right: 0px;
-  height: 2px;
+  height: 1px;
   width: 0%;
   transition: width 0.2s, opacity 0.4s;
   opacity: 1;

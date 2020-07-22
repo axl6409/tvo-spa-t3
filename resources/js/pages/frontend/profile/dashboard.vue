@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <div class="profile">
     <div class="character-section">
-      <h2 class="character-page-title">Personnages</h2>
-      <ul>
-        <li class="character-list-item" v-for="character in characters">
-          <router-link :to="{ name: 'admin' }" class="nav-link" active-class="active">
+      <h2 class="character-section-title">Personnages</h2>
+      <ul class="character-section-list">
+        <li class="character-list-item" v-for="character in characters" v-bind:key="character">
+          <router-link :to="{ name: 'character' , params: { id: character} }" class="nav-link" active-class="active">
             <!--<img :src="path + characters.infos" alt="">-->
             <character-card :character="character"/>
           </router-link>
         </li>
       </ul>
     </div>
-    <div class="profil-section">
-      <h2>Profil Stats</h2>
-      <user-stats></user-stats>
+    <div class="profile-section">
+      <h2 class="profile-page-title">Stats du Compte</h2>
+      <user-stats ></user-stats>
     </div>
   </div>
 </template>
@@ -35,20 +35,21 @@ export default {
     return {
       path: 'https://www.bungie.net/',
       characters: {},
-      charactersDatas: {},
-      profile: {}
+      charactersDatas: {}
     }
   },
 
   computed: mapGetters({
     user: 'auth/user',
-    authenticated: 'auth/check'
+    authenticated: 'auth/check',
+    profile: 'profile/profile'
   }),
 
   created () {
+    this.$store.dispatch('profile/fetchProfile')
     axios.get('/api/profile/all').then((response) => {
       this.characters = response.data.profile.data.characterIds
-      console.log(this.characterIds)
+      console.log(this.characters)
     })
   },
 

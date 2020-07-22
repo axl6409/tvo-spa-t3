@@ -31,7 +31,7 @@ export default {
   methods: {
     getCharacterInfo () {
       axios.get(`/api/profile/character/${this.character}`).then((response) => {
-        console.log(response)
+        console.log(this.character)
         // Get emblem
         this.characterEmblem = response.data.Response.character.data.emblemBackgroundPath
         // Get Light level
@@ -67,12 +67,6 @@ export default {
         let result = response.data['0']['json']
         let result2 = JSON.parse(result)
         this.characterRace = result2['genderedRaceNamesByGenderHash'][genderHash]
-      })
-    },
-
-    getDefinition (def) {
-      axios.get(`/api/manifest/definition/${def}`).then((response) => {
-        console.log(response)
       })
     }
   }

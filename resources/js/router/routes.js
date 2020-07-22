@@ -3,7 +3,7 @@ function page (path) {
 }
 
 export default [
-  { path: '/', name: 'welcome', component: page('welcome.vue') },
+  { path: '/', name: 'welcome', component: page('frontend/home.vue') },
   { path: '/about', name: 'about', component: page('about.vue') },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },
@@ -12,7 +12,7 @@ export default [
   { path: '/home', name: 'home', component: page('home.vue') },
   { path: '/profile', name: 'profile', component: page('settings/profile.vue') },
   { path: '/dashboard', name: 'dashboard', component: page('frontend/profile/dashboard.vue') },
-  { path: '/character', name: 'character', component: page('frontend/profile/character.vue') },
+  { path: '/character/:id', name: 'character', component: page('frontend/profile/character.vue'), props: { default: true } },
 
   // Admin Pages
   { path: '/admin', name: 'admin', component: page('backend/admin/index.vue') },

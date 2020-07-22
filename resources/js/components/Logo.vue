@@ -106,6 +106,10 @@ export default {
           delay: 100,
           direction: 'linear'
         }, 200)
+        .add({
+          targets: svgLogo,
+          scale: [1, 0.5]
+        })
     },
     logoRotation (element) {
       var loopBegan = 1000

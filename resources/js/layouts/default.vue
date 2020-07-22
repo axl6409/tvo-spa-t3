@@ -1,7 +1,6 @@
 <template>
   <div class="main-layout">
     <navbar />
-    <Logo />
     <div class="main-container">
       <child />
     </div>

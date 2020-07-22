@@ -30,12 +30,11 @@ class ProfileController extends Controller
         return $this->characters;
     }
 
-    public function profileDatas()
+    public function profileStats()
     {
         $user = Auth::user();
-        $result = $this->doRequest($this->url.'/Destiny2/'.$user->membership_type.'/Profile/'.$user->membership_id.'/?components=100,200');
-        $this->characters = $result['Response']['profile']['data'];
-        return $this->characters;
+        $result = $this->doRequest($this->url.'/Destiny2/'.$user->membership_type.'/Account/'.$user->membership_id.'/Stats/');
+        return $result['Response'];
     }
 
     /**
@@ -56,7 +55,7 @@ class ProfileController extends Controller
     public function getCharacterInfos($id)
     {
         $user = Auth::user();
-        $request = $this->doRequest($this->url .'/Destiny2/'. $user->membership_type .'/Profile/'. $user->membership_id .'/Character/'.$id.'/?components=200');
+        $request = $this->doRequest($this->url .'/Destiny2/'. $user->membership_type .'/Profile/'. $user->membership_id .'/Character/'.$id.'/?components=100,200,202');
         return $request;
     }
 
