@@ -4,6 +4,15 @@
     <button @click="checkManifest">
       Check Manifest
     </button>
+
+    <div class="dashboard-actions">
+      <div class="posts">
+        <h2>Guides</h2>
+        <router-link :to="{ name: 'posts.create' }" class="nav-link" active-class="active">
+          <p>Créer Un nouveau Guide</p>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 

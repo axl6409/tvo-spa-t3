@@ -1,12 +1,20 @@
 <template>
   <div class="basic-layout">
+    <character-nav />
     <child />
   </div>
 </template>
 
 <script>
+import CharacterNav from '~/components/CharacterNav'
+
 export default {
-  name: 'BasicLayout'
+
+  name: 'BasicLayout',
+
+  components: {
+    CharacterNav
+  }
 }
 </script>
 

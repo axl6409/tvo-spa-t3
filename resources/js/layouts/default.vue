@@ -9,14 +9,12 @@
 
 <script>
 import Navbar from '~/components/Navbar'
-import Logo from '~/components/Logo'
 
 export default {
   name: 'MainLayout',
 
   components: {
-    Navbar,
-    Logo
+    Navbar
   }
 }
 </script>

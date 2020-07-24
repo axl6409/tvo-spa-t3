@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Media extends Model
 {
-    protected $table = "tags";
+    protected $table = "medias";
 
     protected $guarded = [];
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'description', 'path'];
 
     public function posts()
     {

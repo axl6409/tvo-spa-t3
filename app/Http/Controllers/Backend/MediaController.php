@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Tag;
+use App\Media;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class MediaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
-        return $tags;
+        $medias = Media::all();
+        return $medias;
     }
 
     /**
@@ -84,4 +84,5 @@ class TagController extends Controller
     {
         //
     }
+
 }

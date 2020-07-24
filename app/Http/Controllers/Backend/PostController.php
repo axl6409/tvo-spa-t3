@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Category;
+use App\Http\Requests\Posts\PostCreateRequest;
+use App\Tag;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return $posts;
     }
 
     /**
@@ -24,7 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('backend.admin.posts.edit', compact( 'categories', 'tags'));
     }
 
     /**
@@ -33,9 +40,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostCreateRequest $request)
     {
-        //
+        $post = Post::create($request->getValidRequest());
+        $post->tags()->attach($request->tags);
+        return redirect('/posts/all')->with('status', 'Guide Créé');
     }
 
     /**

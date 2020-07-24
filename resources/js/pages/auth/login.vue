@@ -49,7 +49,7 @@ export default {
       await this.$store.dispatch('auth/fetchUser')
 
       // Redirect home.
-      this.$router.push({ name: 'dashboard' })
+      this.$router.push({ name: 'characters' })
     }
   }
 }

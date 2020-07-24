@@ -7,18 +7,19 @@
     "require": {
         "php": "^7.2.5",
         "ext-curl": "*",
+        "ext-json": "*",
+        "ext-sqlite3": "*",
+        "ext-zip": "*",
         "barryvdh/laravel-debugbar": "^3.3",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "intervention/image": "^2.5",
         "laravel/framework": "^7.0",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "tymon/jwt-auth": "^1.0.0",
-        "ext-zip": "*",
-        "ext-sqlite3": "*",
-        "ext-json": "*"
+        "tymon/jwt-auth": "^1.0.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.4.0",

@@ -1,13 +1,20 @@
 <template>
   <div class="character-block">
     <img class="character-emblem" :src="path + characterEmblem" alt="">
-    <p class="character-class">{{ characterClass }}</p>
-    <p class="character-light">{{ characterLight }}</p>
-    <p class="character-race">{{ characterRace }}</p>
+    <p class="character-class">
+      {{ characterClass }}
+    </p>
+    <p class="character-light">
+      {{ characterLight }}
+    </p>
+    <p class="character-race">
+      {{ characterRace }}
+    </p>
   </div>
 </template>
 
 <script>
+
 import axios from 'axios'
 
 export default {

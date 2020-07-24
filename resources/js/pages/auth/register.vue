@@ -37,10 +37,6 @@ export default {
 
   data: () => ({
     form: new Form({
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: ''
     }),
     mustVerifyEmail: false
   }),
@@ -49,6 +45,7 @@ export default {
     async register () {
       // Register the user.
       const { data } = await this.form.post('/api/register')
+      console.log(data)
 
       // Must verify email fist.
       if (data.status) {

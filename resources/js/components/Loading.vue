@@ -38,7 +38,7 @@ export default {
       }, 100)
       return this
     },
-    set (num) {
+    1 (num) {
       this.show = true
       this.canSuccess = true
       this.percent = Math.floor(num)

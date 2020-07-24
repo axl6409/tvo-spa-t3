@@ -11,17 +11,12 @@
 
       <div id="navbarToggler" class="collapse navbar-collapse">
         <ul class="navbar-nav">
-          <li v-if="user" class="nav-item">
-            <router-link :to="{ name: 'characters' }" class="nav-link pl-3" active-class="active">
-              <fa icon="user" fixed-width />
-              {{ $t('personnages') }}
-            </router-link>
-          </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'posts' }" class="nav-link pl-3" active-class="active">
-              <fa icon="user" fixed-width />
-              {{ $t('guides') }}
-            </router-link>
+            <a class="nav-link" href="#">
+              <router-link :to="{ name: 'characters' }" class="nav-link pl-3" active-class="active">
+                {{ $t('personnages') }}
+              </router-link>
+            </a>
           </li>
         </ul>
 
@@ -65,8 +60,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
+import { mapGetters } from 'vuex'
 import Cookies from 'js-cookie'
 
 export default {
@@ -97,9 +92,9 @@ export default {
 </script>
 
 <style scoped>
-.profile-photo {
-  width: 2rem;
-  height: 2rem;
-  margin: -.375rem 0;
-}
+  .profile-photo {
+    width: 2rem;
+    height: 2rem;
+    margin: -.375rem 0;
+  }
 </style>
