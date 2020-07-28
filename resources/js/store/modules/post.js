@@ -19,6 +19,11 @@ export const mutations = {
     state.post = post
   },
 
+  [types.DELETE_POST] (state, id) {
+    var index = state.post.findIndex(p => p.id === id)
+    state.post.splice(index, 1)
+  },
+
   [types.FETCH_POST_SUCCESS] (state, { post }) {
     state.post = post
   },
@@ -30,16 +35,24 @@ export const mutations = {
 
 export const actions = {
 
-  savePost ({ commit, displatch }, payload) {
+  savePost ({ commit, dispatch }, payload) {
     commit(types.SAVE_POST, payload)
   },
 
   async fetchPosts ({ commit }) {
     try {
-      const { data } = await axios.get('/api/posts/all')
+      const { data } = await axios.get('/api/posts/index')
+      console.log(data)
       commit(types.FETCH_POST_SUCCESS, { post: data })
     } catch (e) {
       commit(types.FETCH_POST_FAILURE)
     }
+  },
+
+  deletePost ({ commit }, post) {
+    axios.delete('/api/posts/delete/' + post.id)
+      .then(function () {
+        commit(types.DELETE_POST, post)
+      })
   }
 }

@@ -19,7 +19,9 @@ export default [
 
   // Admin Pages
   { path: '/admin', name: 'admin', component: page('backend/admin/index.vue') },
+  { path: '/posts/index', name: 'posts.index', component: page('backend/admin/posts/index.vue') },
   { path: '/posts/create', name: 'posts.create', component: page('backend/admin/posts/edit.vue') },
+  { path: '/posts/edit:id', name: 'posts.edit', component: page('backend/admin/posts/edit.vue'), props: { default: true } },
 
   { path: '*', component: page('errors/404.vue') }
 ]

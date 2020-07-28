@@ -1,56 +1,51 @@
 <template>
   <div class="post-edit">
-    <form @submit.prevent="createPost" @keydown="form.onKeydown($event)">
-      <!-- Alert -->
-      <alert-error :form="form" />
-
+    <form @submit.prevent="createPost">
       <!-- Title -->
       <div class="form-group">
-        <label for="title">Title</label>
-        <input id="title" v-model="form.title" type="text" name="title"
-               class="form-control" :class="{ 'is-invalid': form.errors.has('title') }"
+        <label for="title" class="form-label">Title</label>
+        <input id="title" v-model="post.title" type="text" name="title"
+               class="form-control"
         >
-        <has-error :form="form" field="title" />
       </div>
 
       <!-- Category -->
       <div class="form-group">
-        <label for="category">Category</label>
-        <input id="category" v-model="form.category" type="text" name="category"
-               class="form-control" :class="{ 'is-invalid': form.errors.has('category') }"
+        <label for="category" class="form-label">Category</label>
+        <select id="category" v-model="post.category" name="category"
+                class="form-control"
         >
-        <has-error :form="form" field="category" />
+          <option disabled value="">
+            Choisir une catégorie
+          </option>
+          <option v-for="(category) in categories" :value="category.id">
+            {{ category.name }}
+          </option>
+        </select>
       </div>
 
       <!-- Tags -->
       <div class="form-group">
-        <label for="tags">tags</label>
-        <input id="tags" v-model="form.tags" type="text" name="tags"
-               class="form-control" :class="{ 'is-invalid': form.errors.has('tags') }"
-        >
-        <has-error :form="form" field="tags" />
+        <label for="tags" class="form-label">tags</label>
+        <auto-complete />
       </div>
 
       <!-- Image -->
       <div class="form-group">
-        <label for="content">Image</label>
-        <input type="file" name="image" class="form-control"
-               :class="{ 'is-invalid': form.errors.has('image') }" @change="selectFile"
-        >
-        <has-error :form="form" field="image" />
+        <label for="content" class="form-label">Image</label>
+        <input type="file" name="image" class="form-control">
       </div>
 
       <!-- Content -->
       <div class="form-group">
-        <label for="content">Content</label>
-        <input id="content" v-model="form.content" type="text" name="content"
-               class="form-control" :class="{ 'is-invalid': form.errors.has('content') }"
+        <label for="content" class="form-label">Content</label>
+        <input id="content" v-model="post.content" type="text" name="content"
+               class="form-control"
         >
-        <has-error :form="form" field="content" />
       </div>
 
       <!-- Submit Button -->
-      <button :disabled="form.busy" type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary">
         Sauvegarder
       </button>
     </form>
@@ -58,64 +53,108 @@
 </template>
 
 <script>
-import Form from 'vform'
+import axios from 'axios'
 import { mapGetters } from 'vuex'
-
-const objectToFormData = window.objectToFormData
+import AutoComplete from '../../../../components/AutoComplete'
 
 export default {
   middleware: 'auth',
 
-  data: () => ({
-    form: new Form({
-      user: '',
-      category: '',
-      tags: '',
-      title: '',
-      content: '',
-      image: '',
-      is_published: false,
-      published_at: ''
-    })
-  }),
+  components: {
+    AutoComplete
+  },
+
+  data () {
+    return {
+      post: {
+        userId: '',
+        title: '',
+        category: {
+          id: '',
+          name: ''
+        },
+        tags: [],
+        image: null,
+        content: null
+      },
+      search: '',
+      results: [],
+      isOpen: false
+    }
+  },
 
   computed: mapGetters({
     user: 'auth/user',
-    tags: 'tags/tags'
+    tags: 'tags/tags',
+    categories: 'categories/categories'
   }),
 
   beforeCreate () {
-    this.$store.dispatch('fetchTags')
+    this.$store.dispatch('tags/fetchTags')
+    this.$store.dispatch('categories/fetchCategories')
   },
 
   methods: {
-    createPost () {
-      this.userId = this.user.id
-      const { data } = this.form.post('/api/posts/store')
-      console.log(data)
+    createPost (e) {
+      this.post.userId = this.user.id
+
+      let formData = new FormData(e.target)
+      formData.append('title', this.post.title)
+      formData.append('category', this.post.category)
+      formData.append('tags', this.post.tags)
+      formData.append('image', this.post.image)
+      formData.append('content', this.post.content)
+
+      axios.post('/api/posts/store',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(function () {
+        console.log('Success !')
+      })
+        .catch(function () {
+          console.log('Failure')
+        })
+      this.$router.push({ name: 'posts.index' })
     },
 
-    selectFile (e) {
-      const file = e.target.files[0]
+    onChange () {
+      this.isOpen = true
+      this.filterResults()
+    },
+    filterResults () {
+      console.log(this.post.tags.indexOf(this.tags) !== -1)
+    },
+    setResult (result) {
+      this.search = result
+      this.isOpen = false
+    },
 
-      // Do some client side validation...
+    addTag (event) {
+      event.preventDefault()
+      var val = event.target.value.trim()
+      if (val.length > 0) {
+        this.post.tags.push(val)
+        event.target.value = ''
+      }
+    },
 
-      this.form.image = file
+    removeTag (index) {
+      this.post.tags.splice(index, 1)
+    },
 
-      this.form.submit('post', '/medias/store', {
-        // Transform form data to FormData
-        transformRequest: [function (data, headers) {
-          return objectToFormData(data)
-        }],
+    removeLastTag (event) {
+      if (event.target.value.length === 0) {
+        this.removeTag(this.post.tags.length - 1)
+      }
+    },
 
-        onUploadProgress: e => {
-          // Do whatever you want with the progress event
-          console.log(e)
-        }
-      })
-        .then(({ data }) => {
-          console.log(data)
-        })
+    selectedFile (e) {
+      this.post.image = e.target.files[0]
+      console.log(this.form.image)
     }
   }
 }

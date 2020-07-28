@@ -54,12 +54,12 @@ class PostCreateRequest extends FormRequest
                 Storage::disk('storage')->makeDirectory('post/thumbnail');
             }
 
-            $postImage = Image::make($image)->resize(null, 1060, function ($constraint){
+            Image::make($image)->resize(null, 1080, function ($constraint){
                 $constraint->aspectRatio();
-            })->save('storage/post/'.$imageName);
+            })->save('public/post/'.$imageName);
 
-            $thumbnail = Image::make($image)->fit(550, 550)
-                ->save('storage/post/thumbnail/'.$imageName);
+            Image::make($image)->fit(550, 550)
+                ->save('public/post/thumbnail/'.$imageName);
 
         } else {
             $imageName = 'default.jpg';
@@ -73,7 +73,6 @@ class PostCreateRequest extends FormRequest
             'content' => $this->input('content'),
             'image' => $imageName,
             'is_published' => $this->input('is_published') ?? false,
-            'published_at' => $this->input('published_at'),
         ];
     }
 }

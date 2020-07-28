@@ -14,9 +14,6 @@ export const getters = {
 // Mutations
 export const mutations = {
   [types.SAVE_TAGS] (state, { tags }) {
-    axios.post('/api/medias/store', {
-      tags
-    })
     state.tags = tags
   },
 
@@ -38,7 +35,7 @@ export const actions = {
   async fetchTags ({ commit }) {
     try {
       const { data } = await axios.get('/api/tags/all')
-      commit(types.FETCH_TAGS_SUCCESS, { tag: data })
+      commit(types.FETCH_TAGS_SUCCESS, { tags: data })
     } catch (e) {
       commit(types.FETCH_TAGS_FAILURE)
     }

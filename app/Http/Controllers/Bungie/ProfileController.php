@@ -43,7 +43,7 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function characters($id)
+    public function characters()
     {
         $this->index();
         foreach ($this->characters as $character) {

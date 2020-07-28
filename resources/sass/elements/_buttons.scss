@@ -28,3 +28,46 @@
   display: block;
   text-align: center;
 }
+
+.edit-button {
+  background-color: rgba(0,0,0,0);
+  color: white;
+  padding: 2px 20px;
+  margin: 2px;
+  font-size: 20px;
+  border: 1px solid #f9e400;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.edit-button:hover {
+  box-shadow: 0px 0px 5px 1px #908400;
+}
+.edit-button a {
+  color: white;
+}
+
+.delete-button {
+  background-color: rgba(0,0,0,0);
+  color: white;
+  padding: 2px 20px;
+  margin: 2px;
+  font-size: 20px;
+  border: 1px solid #cd0013;
+  border-radius: 5px;
+}
+.delete-button:hover {
+  box-shadow: 0px 0px 5px 1px #cd0013;
+}
+
+.publish-button {
+  background-color: rgba(0,0,0,0);
+  color: white;
+  padding: 2px 20px;
+  margin: 2px;
+  font-size: 20px;
+  border: 1px solid #2fdb00;
+  border-radius: 5px;
+}
+.publish-button:hover {
+  box-shadow: 0px 0px 5px 1px #2fdb00;
+}

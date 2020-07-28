@@ -30,21 +30,23 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::prefix('/profile')->group( function () {
         Route::get('/all', 'Bungie\ProfileController@index');
         Route::get('/data', 'Bungie\ProfileController@profileStats');
+        Route::get('/characters', 'Bungie\Profilecontroller@characters');
         Route::get('/character/{item}', 'Bungie\ProfileController@getCharacterInfos');
     });
 
     Route::prefix('/posts')->group( function () {
-        Route::get('/all', 'Backend\PostController@index');
+        Route::get('/index', 'Backend\PostController@index');
         Route::get('/create', 'Backend\PostController@create');
-        Route::get('/edit/{id}', 'Backend\PostController@create');
+        Route::get('/edit/{id}', 'Backend\PostController@edit');
         Route::post('/store', 'Backend\PostController@store');
         Route::post('/update', 'Backend\PostController@update');
         Route::delete('/delete/{id}', 'Backend\PostController@destroy');
+        Route::patch('/publish/{id}', 'Backend\PostController@publish');
     });
 
     Route::prefix('/medias')->group( function () {
         Route::get('/all', 'Backend\MediaController@index');
-        Route::get('/edit', 'Backend\MediaController@edit');
+        Route::get('/edit/{id}', 'Backend\MediaController@edit');
         Route::post('/store', 'Backend\MediaController@store');
         Route::put('/update/{id}', 'Backend\MediaController@update');
         Route::delete('/delete/{id}', 'Backend\MediaController@destroy');
@@ -52,7 +54,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('/categories')->group( function () {
         Route::get('/all', 'Backend\CategoryController@index');
-        Route::get('/edit', 'Backend\CategoryController@edit');
+        Route::get('/edit{id}', 'Backend\CategoryController@edit');
         Route::post('/store', 'Backend\CategoryController@store');
         Route::put('/update/{id}', 'Backend\CategoryController@update');
         Route::delete('/delete/{id}', 'Backend\CategoryController@destroy');
@@ -60,7 +62,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('/tags')->group( function () {
         Route::get('/all', 'Backend\TagController@index');
-        Route::get('/edit', 'Backend\TagController@edit');
+        Route::get('/edit{id}', 'Backend\TagController@edit');
         Route::post('/store', 'Backend\TagController@store');
         Route::put('/update/{id}', 'Backend\TagController@update');
         Route::delete('/delete/{id}', 'Backend\TagController@destroy');

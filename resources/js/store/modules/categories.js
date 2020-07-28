@@ -3,29 +3,26 @@ import * as types from '../mutation-types'
 
 // State
 export const state = {
-  category: null
+  categories: null
 }
 
 // Getters
 export const getters = {
-  category: state => state.category
+  categories: state => state.categories
 }
 
 // Mutations
 export const mutations = {
-  [types.SAVE_CAT] (state, { category }) {
-    axios.post('/api/medias/store', {
-      category
-    })
-    state.category = category
+  [types.SAVE_CAT] (state, { categories }) {
+    state.categories = categories
   },
 
-  [types.FETCH_CAT_SUCCESS] (state, { category }) {
-    state.category = category
+  [types.FETCH_CATEGORIES_SUCCESS] (state, { categories }) {
+    state.categories = categories
   },
 
-  [types.FETCH_CAT_FAILURE] (state) {
-    state.category = null
+  [types.FETCH_CATEGORIES_FAILURE] (state) {
+    state.categories = null
   }
 }
 
@@ -38,9 +35,9 @@ export const actions = {
   async fetchCategories ({ commit }) {
     try {
       const { data } = await axios.get('/api/categories/all')
-      commit(types.FETCH_CAT_SUCCESS, { category: data })
+      commit(types.FETCH_CATEGORIES_SUCCESS, { categories: data })
     } catch (e) {
-      commit(types.FETCH_CAT_FAILURE)
+      commit(types.FETCH_CATEGORIES_FAILURE)
     }
   }
 }

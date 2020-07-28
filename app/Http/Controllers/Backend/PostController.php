@@ -8,6 +8,7 @@ use App\Http\Requests\Posts\PostCreateRequest;
 use App\Tag;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -19,7 +20,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return $posts;
+        return response()->json($posts);
     }
 
     /**
@@ -44,7 +45,8 @@ class PostController extends Controller
     {
         $post = Post::create($request->getValidRequest());
         $post->tags()->attach($request->tags);
-        return redirect('/posts/all')->with('status', 'Guide Créé');
+        $msg = 'Guide crée';
+        return response()->json($msg);
     }
 
     /**
@@ -89,6 +91,24 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        $post = Post::findOrFail($id);
+        $post->tags()->detach();
+        /**
+        $postImage = $post->image;
+        if($postImage) {
+            Storage::disk('storage')->delete('public/post/'.$postImage);
+            Storage::disk('storage')->delete('public/post/thumbnail/'.$postImage);
+        }
+         * */
+        $post->delete($id);
+    }
+
+    /**
+     * Set the post to publish status
+     *
+     * @param $id
+     */
+    public function publish($id) {
         //
     }
 }

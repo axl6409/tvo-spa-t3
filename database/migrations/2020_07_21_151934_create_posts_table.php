@@ -22,8 +22,7 @@ class CreatePostsTable extends Migration
             $table->longText('content');
             $table->string('image')->nullable();
             $table->boolean('is_publish')->default(false);
-            $table->dateTime('deleted_at')->nullable();
-            $table->dateTime('publish_at')->nullable();
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
         });
     }

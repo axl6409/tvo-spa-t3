@@ -6,10 +6,13 @@
     </button>
 
     <div class="dashboard-actions">
-      <div class="posts">
+      <p class="posts">
         <h2>Guides</h2>
         <router-link :to="{ name: 'posts.create' }" class="nav-link" active-class="active">
-          <p>Créer Un nouveau Guide</p>
+          <p class="new-post-btn">Créer Un nouveau Guide</p>
+        </router-link>
+        <router-link :to="{ name: 'posts.index' }" class="nav-link" active-class="active">
+          <p class="new-post-btn">Admin des guides</p>
         </router-link>
       </div>
     </div>
@@ -17,9 +20,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import axios from 'axios'
 
 export default {
+
+  data () {
+    return {
+    }
+  },
+
+  created () {
+    console.log(this.post)
+  },
 
   methods: {
     checkManifest () {
