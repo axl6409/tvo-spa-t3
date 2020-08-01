@@ -31,7 +31,6 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $tags = Tag::all();
         return view('backend.admin.posts.edit', compact( 'categories', 'tags'));
     }
 
@@ -44,9 +43,7 @@ class PostController extends Controller
     public function store(PostCreateRequest $request)
     {
         $post = Post::create($request->getValidRequest());
-        $post->tags()->attach($request->tags);
-        $msg = 'Guide crée';
-        return response()->json($msg);
+        return response()->json(null, 200);
     }
 
     /**
@@ -92,7 +89,6 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $post->tags()->detach();
         /**
         $postImage = $post->image;
         if($postImage) {

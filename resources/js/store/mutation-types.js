@@ -15,6 +15,7 @@ export const FETCH_PROFILE_FAILURE = 'FETCH_PROFILE_FAILURE'
 
 // posts.js
 export const SAVE_POST = 'SAVE_POST'
+export const PUSH_POST = 'PUSH_POST'
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS'
 export const FETCH_POST_FAILURE = 'FETCH_POST_FAILURE'
 export const UPDATE_POST = 'UPDATE_POST'
@@ -34,9 +35,3 @@ export const FETCH_MEDIA_FAILURE = 'FETCH_MEDIA_FAILURE'
 export const UPDATE_MEDIA = 'UPDATE_MEDIA'
 export const DELETE_MEDIA = 'DELETE_MEDIA'
 
-// tag.js
-export const SAVE_TAGS = 'SAVE_TAGS'
-export const FETCH_TAGS_SUCCESS = 'FETCH_TAGS_SUCCESS'
-export const FETCH_TAGS_FAILURE = 'FETCH_TAGS_FAILURE'
-export const UPDATE_TAGS = 'UPDATE_TAGS'
-export const DELETE_TAGS = 'DELETE_TAGS'

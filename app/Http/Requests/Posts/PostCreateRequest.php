@@ -29,10 +29,6 @@ class PostCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:posts,title',
-            'category' => 'required',
-            'content' => 'required',
-            'image' => 'mimes:jpg,png,jpeg,gif,bmp'
         ];
     }
 

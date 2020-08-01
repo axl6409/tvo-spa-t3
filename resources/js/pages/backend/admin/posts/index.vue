@@ -28,13 +28,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="guide in guides.post" v-bind:key="getPosts">
+        <tr v-for="post in posts" :key="post.id">
           <th scope="row">
-            {{ guide.id }}
+            {{ post.id }}
           </th>
-          <th>{{ guide.title }}</th>
-          <th>{{ guide.is_publish }}</th>
-          <th>{{ guide.created_at }}</th>
+          <th>{{ post.title }}</th>
+          <th>{{ post.is_publish }}</th>
+          <th>{{ post.created_at }}</th>
           <th>
             <i class="fas fa-times" />
             <button class="edit-button">
@@ -42,7 +42,7 @@
                 <fa icon="edit" fixed-width />
               </router-link>
             </button>
-            <button class="delete-button" @click="deletePost(guide.id)">
+            <button class="delete-button" @click="deletePost(post.id)">
               <fa icon="times" fixed-width />
             </button>
             <button class="publish-button">
@@ -58,24 +58,20 @@
 <script>
 
 import { mapGetters } from 'vuex'
-import axios from 'axios'
 
 export default {
 
   data () {
     return {
-      guides: null
     }
   },
 
-  computed: {
-    ...mapGetters({
-      posts: 'post/post'
-    })
-  },
+  computed: mapGetters({
+    posts: 'posts/posts'
+  }),
 
   beforeCreate () {
-    this.$store.dispatch('post/fetchPosts')
+    this.$store.dispatch('posts/fetchPosts')
   },
 
   created () {
@@ -84,10 +80,10 @@ export default {
 
   methods: {
     getPosts () {
-      this.guides = this.$store.state.post
+      this.guides = this.$store.state
     },
     deletePost (postId) {
-      this.$store.commit('DELETE_POST', postId)
+      this.$store.dispatch('posts/deletePost', postId)
     }
   }
 }
