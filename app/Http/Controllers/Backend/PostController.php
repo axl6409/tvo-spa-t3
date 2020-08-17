@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Http\Requests\Posts\PostCreateRequest;
-use App\Tag;
+use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,8 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return response()->json($posts);
+        return PostResource::collection(Post::all());
     }
 
     /**
@@ -43,7 +42,7 @@ class PostController extends Controller
     public function store(PostCreateRequest $request)
     {
         $post = Post::create($request->getValidRequest());
-        return response()->json(null, 200);
+        return response()->json('Post Created !', 200);
     }
 
     /**

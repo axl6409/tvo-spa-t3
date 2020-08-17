@@ -60,7 +60,7 @@ export const actions = {
   async fetchPosts ({ commit }) {
     try {
       const { data } = await axios.get('/api/posts/index')
-      commit(types.FETCH_POST_SUCCESS, { post: data })
+      commit(types.FETCH_POST_SUCCESS, { post: data.data })
     } catch (e) {
       commit(types.FETCH_POST_FAILURE)
     }

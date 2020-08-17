@@ -10,11 +10,6 @@ class Post extends Model
 
     protected $fillable = ['user_id', 'category_id', 'title', 'slug', 'content', 'image', 'is_publish', 'deleted_at', 'published_at'];
 
-    public function medias()
-    {
-        return $this->belongsToMany(Media::class);
-    }
-
     public function category()
     {
         return $this->belongsTo('App\Category');

@@ -19,9 +19,10 @@ export default [
 
   // Admin Pages
   { path: '/admin', name: 'admin', component: page('backend/admin/index.vue') },
-  { path: '/posts/index', name: 'posts.index', component: page('backend/admin/posts/index.vue') },
-  { path: '/posts/create', name: 'posts.create', component: page('backend/admin/posts/edit.vue') },
-  { path: '/posts/edit:id', name: 'posts.edit', component: page('backend/admin/posts/edit.vue'), props: { default: true } },
+  { path: '/posts/create', name: 'posts.create', component: page('backend/admin/posts/create.vue') },
+  { path: '/posts/edit/:id', name: 'posts.edit', component: page('backend/admin/posts/edit.vue'), props: { default: true } },
+  { path: '/categories/create', name: 'categories.create', component: page('backend/admin/categories/create.vue') },
+  { path: '/categories/edit/:id', name: 'categories.edit', component: page('backend/admin/categories/edit.vue'), props: { default: true } },
 
   { path: '*', component: page('errors/404.vue') }
 ]

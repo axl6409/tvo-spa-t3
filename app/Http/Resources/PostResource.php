@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
-class Post extends JsonResource
+class PostResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,12 +21,11 @@ class Post extends JsonResource
             'category_id' => $this->category_id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'content' => $this->content,
+            'content' => Str::limit($this->content, 50, $end='...'),
             'image' => $this->image,
-            'is_publish' => $this->created_at,
-            'is_deleted' => $this->updated_at,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'is_publish' => $this->is_publish,
+            'is_deleted' => $this->is_deleted,
+            'created_at' => $this->created_at->format('d-m-Y H:i:s')
         ];
     }
 }

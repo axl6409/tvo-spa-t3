@@ -8,7 +8,7 @@
         <li v-for="character in characters" :key="character" class="character-list-item">
           <router-link :to="{ name: 'character' , params: { id: character} }" class="nav-link" active-class="active">
             <!--<img :src="path + characters.infos" alt="">-->
-            <character-card :ref="loading" :character="character" />
+            <character-card :character="character" />
           </router-link>
         </li>
       </ul>
@@ -17,7 +17,7 @@
       <h2 class="profile-page-title">
         Stats du Compte
       </h2>
-      <user-stats :ref="loading" />
+      <user-stats />
     </div>
   </div>
 </template>

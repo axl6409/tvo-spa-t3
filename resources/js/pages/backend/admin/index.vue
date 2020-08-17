@@ -6,24 +6,37 @@
     </button>
 
     <div class="dashboard-actions">
-      <p class="posts">
-        <h2>Guides</h2>
+
+    </div>
+
+    <div class="dashboard-lists">
+      <div class="posts-list-admin">
         <router-link :to="{ name: 'posts.create' }" class="nav-link" active-class="active">
           <p class="new-post-btn">Créer Un nouveau Guide</p>
         </router-link>
-        <router-link :to="{ name: 'posts.index' }" class="nav-link" active-class="active">
-          <p class="new-post-btn">Admin des guides</p>
+        <posts-list-admin></posts-list-admin>
+      </div>
+      <div class="categories-list-admin">
+        <router-link :to="{ name: 'categories.create' }" class="nav-link" active-class="active">
+          <p class="new-post-btn">Créer Une nouvelle Catégorie</p>
         </router-link>
+        <categories-list-admin></categories-list-admin>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import axios from 'axios'
+import PostsListAdmin from '../../../components/lists/PostsListAdmin'
+import CategoriesListAdmin from '../../../components/lists/CategoriesListAdmin'
 
 export default {
+
+  components: {
+    PostsListAdmin,
+    CategoriesListAdmin
+  },
 
   data () {
     return {

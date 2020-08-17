@@ -23,10 +23,11 @@ export const DELETE_POST = 'DELETE_POST'
 
 // category.js
 export const SAVE_CAT = 'SAVE_CAT'
+export const PUSH_CATEGORY = 'PUSH_CATEGORY'
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS'
 export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE'
 export const UPDATE_CAT = 'UPDATE_CAT'
-export const DELETE_CAT = 'DELETE_CAT'
+export const DELETE_CATEGORY = 'DELETE_CATEGORY'
 
 // media.js
 export const SAVE_MEDIA = 'SAVE_MEDIA'

@@ -1,6 +1,15 @@
 <template>
   <div class="post-edit">
     <form @submit.prevent="createPost">
+
+      <!-- Errors -->
+      <div class="form-errors-block" v-if="errors.length">
+        <p>Corriger les erreurs ci dessous:</p>
+        <ul class="form-errors-list">
+          <li class="form-errors-items" v-for="error in errors">{{ error }}</li>
+        </ul>
+        <button class="btn btn-light" @click="closeBox">Close</button>
+      </div>
       <!-- Title -->
       <div class="form-group">
         <label for="title" class="form-label">Title</label>
@@ -26,8 +35,8 @@
 
       <!-- Image -->
       <div class="form-group">
-        <label for="content" class="form-label">Image</label>
-        <input type="file" name="image" class="form-control" @change="selectedImage">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" id="image" name="image" class="form-control" @change="selectedImage">
       </div>
 
       <!-- Content -->
@@ -47,15 +56,29 @@
 </template>
 
 <script>
+
   import { mapGetters } from 'vuex'
 
   export default {
     middleware: 'auth',
 
-    props: ['post'],
-
     data () {
       return {
+        post: {
+          userId: '',
+          title: '',
+          category: '',
+          image: null,
+          content: null
+        },
+        errors: []
+      }
+    },
+
+    watch: {
+      title(value) {
+        this.post.title = value
+        this.validateTitle(value)
       }
     },
 
@@ -69,8 +92,18 @@
     },
 
     methods: {
+      closeBox() {
+        this.errors = []
+      },
+      validateImage(value) {
+
+      },
       selectedImage (event) {
         this.post.image = event.target.files[0]
+        if (this.post.image.size > 1000000) {
+          this.post.image = null
+          this.errors.push('Image trop lourde, < 1Mb')
+        }
       },
       createPost (e) {
         this.post.userId = this.user.id
@@ -81,8 +114,22 @@
         formData.append('image', this.post.image)
         formData.append('content', this.post.content)
 
-        this.$store.dispatch('posts/updatePost', formData)
+        if (!this.post.title) {
+          this.errors.push('Titre requis')
+        }
+        if (!this.post.category) {
+          this.errors.push('Catégorie requise')
+        }
+        if (!this.post.image) {
+          this.errors.push('Image requise')
+        }
+        if (!this.post.content) {
+          this.errors.push('Contenu Requis')
+        }
+
+        this.$store.dispatch('posts/savePost', formData)
         this.$router.push({ name: 'admin' })
+
       }
     }
   }
