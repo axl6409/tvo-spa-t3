@@ -44,16 +44,8 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::patch('/publish/{id}', 'Backend\PostController@publish');
     });
 
-    Route::prefix('/medias')->group( function () {
-        Route::get('/all', 'Backend\MediaController@index');
-        Route::get('/edit/{id}', 'Backend\MediaController@edit');
-        Route::post('/store', 'Backend\MediaController@store');
-        Route::put('/update/{id}', 'Backend\MediaController@update');
-        Route::delete('/delete/{id}', 'Backend\MediaController@destroy');
-    });
-
     Route::prefix('/categories')->group( function () {
-        Route::get('/all', 'Backend\CategoryController@index');
+        Route::get('/index', 'Backend\CategoryController@index');
         Route::get('/edit{id}', 'Backend\CategoryController@edit');
         Route::post('/store', 'Backend\CategoryController@store');
         Route::put('/update/{id}', 'Backend\CategoryController@update');

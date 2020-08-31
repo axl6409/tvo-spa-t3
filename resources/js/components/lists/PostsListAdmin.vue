@@ -20,7 +20,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="post in posts" :key="post.id">
+    <tr v-for="post in posts" v-bind:key="post.id">
       <th scope="row">
         {{ post.id }}
       </th>
@@ -30,7 +30,7 @@
       <th>
         <i class="fas fa-times" />
         <button class="edit-button">
-          <router-link :to="{ name: 'posts.edit', params: { post } }">
+          <router-link :to="{ name: 'posts.edit', params: { post: post } }">
             <fa icon="edit" fixed-width />
           </router-link>
         </button>
@@ -65,13 +65,10 @@
     },
 
     created () {
-      this.getPosts()
+      this.$store.state
     },
 
     methods: {
-      getPosts () {
-        this.guides = this.$store.state
-      },
       deletePost (postId) {
         this.$store.dispatch('posts/deletePost', postId)
       }

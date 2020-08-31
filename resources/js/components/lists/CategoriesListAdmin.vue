@@ -20,7 +20,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="category in categories" :key="category.id">
+    <tr v-for="category in categories" v-bind:key="category.id">
       <th scope="row">
         {{ category.id }}
       </th>
@@ -62,13 +62,10 @@
     },
 
     created () {
-      this.getCategories()
+      this.$store.state
     },
 
     methods: {
-      getCategories () {
-        this.$store.state
-      },
       deleteCategory (id) {
         this.$store.dispatch('categories/deleteCategory', id)
       }

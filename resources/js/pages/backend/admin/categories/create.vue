@@ -1,5 +1,15 @@
 <template>
   <form @submit.prevent="createCategory">
+
+    <!-- Errors -->
+    <div class="form-errors-block" v-if="errors.length">
+      <p>Corriger les erreurs ci dessous:</p>
+      <ul class="form-errors-list">
+        <li class="form-errors-items" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <button class="btn btn-light" @click="closeBox">Close</button>
+    </div>
+
     <!-- Title -->
     <div class="form-group">
       <label for="name" class="form-label">Name</label>
@@ -41,7 +51,8 @@
           name: '',
           description: '',
           image: null
-        }
+        },
+        errors: []
       }
     },
 

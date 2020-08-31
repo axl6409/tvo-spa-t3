@@ -42,13 +42,30 @@
       <!-- Content -->
       <div class="form-group">
         <label for="content" class="form-label">Content</label>
-        <input id="content" v-model="post.content" type="text" name="content"
-               class="form-control"
-        >
+        <editor
+          api-key="qn9d6exax4dzon3nlr0h2q2uezhebpdn6gu8tntucbrsjnxm"
+          :init="{
+             height: 500,
+             menubar: false,
+             plugins: [
+               'advlist autolink lists link image charmap print preview anchor',
+               'searchreplace visualblocks code fullscreen',
+               'insertdatetime media table paste code help wordcount'
+             ],
+             toolbar:
+               'undo redo | formatselect | bold italic backcolor | \
+               alignleft aligncenter alignright alignjustify | \
+               bullist numlist outdent indent | removeformat | help'
+           }"
+          id="content"
+          name="content"
+          v-model="post.content"
+        />
       </div>
 
+
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary" >
         Sauvegarder
       </button>
     </form>
@@ -58,9 +75,14 @@
 <script>
 
   import { mapGetters } from 'vuex'
+  import Editor from '@tinymce/tinymce-vue'
 
   export default {
     middleware: 'auth',
+
+    components: {
+      'editor': Editor
+    },
 
     data () {
       return {
@@ -71,14 +93,7 @@
           image: null,
           content: null
         },
-        errors: []
-      }
-    },
-
-    watch: {
-      title(value) {
-        this.post.title = value
-        this.validateTitle(value)
+        errors: [],
       }
     },
 
@@ -94,9 +109,6 @@
     methods: {
       closeBox() {
         this.errors = []
-      },
-      validateImage(value) {
-
       },
       selectedImage (event) {
         this.post.image = event.target.files[0]
@@ -120,15 +132,16 @@
         if (!this.post.category) {
           this.errors.push('Catégorie requise')
         }
-        if (!this.post.image) {
-          this.errors.push('Image requise')
-        }
         if (!this.post.content) {
           this.errors.push('Contenu Requis')
         }
 
-        this.$store.dispatch('posts/savePost', formData)
-        this.$router.push({ name: 'admin' })
+        if (this.errors.length == 0) {
+          this.$store.dispatch('posts/savePost', formData)
+          this.$router.push({name: 'admin'})
+        } else {
+          console.log('There some errors')
+        }
 
       }
     }

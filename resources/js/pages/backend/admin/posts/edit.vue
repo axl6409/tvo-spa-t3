@@ -4,7 +4,7 @@
       <!-- Title -->
       <div class="form-group">
         <label for="title" class="form-label">Title</label>
-        <input id="title" v-model="post.title" type="text" name="title"
+        <input id="title" v-bind:title="post.title" type="text" name="title"
                class="form-control"
         >
       </div>
@@ -12,7 +12,7 @@
       <!-- Category -->
       <div class="form-group">
         <label for="category" class="form-label">Category</label>
-        <select id="category" v-model="post.category" name="category"
+        <select id="category" v-bind:category="post.category" name="category"
                 class="form-control"
         >
           <option disabled value="">
@@ -33,9 +33,25 @@
       <!-- Content -->
       <div class="form-group">
         <label for="content" class="form-label">Content</label>
-        <input id="content" v-model="post.content" type="text" name="content"
-               class="form-control"
-        >
+        <editor
+          api-key="qn9d6exax4dzon3nlr0h2q2uezhebpdn6gu8tntucbrsjnxm"
+          :init="{
+             height: 500,
+             menubar: false,
+             plugins: [
+               'advlist autolink lists link image charmap print preview anchor',
+               'searchreplace visualblocks code fullscreen',
+               'insertdatetime media table paste code help wordcount'
+             ],
+             toolbar:
+               'undo redo | formatselect | bold italic backcolor | \
+               alignleft aligncenter alignright alignjustify | \
+               bullist numlist outdent indent | removeformat | help'
+           }"
+          id="content"
+          name="content"
+          v-bind:content="post.content"
+        />
       </div>
 
       <!-- Submit Button -->
@@ -48,11 +64,16 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import Editor from '@tinymce/tinymce-vue'
 
   export default {
     middleware: 'auth',
 
     props: ['post'],
+
+    components: {
+      'editor': Editor
+    },
 
     data () {
       return {

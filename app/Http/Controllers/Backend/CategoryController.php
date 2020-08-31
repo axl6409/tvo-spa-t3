@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Categories\CategoryCreateRequest;
 use App\Http\Resources\CategoryResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -84,6 +85,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $categoryImage = $category->image;
+        if ($categoryImage) {
+            Storage::disk('public')->delete('category/'.$categoryImage);
+            Storage::disk('public')->delete('category/thumbnail/'.$categoryImage);
+        }
+        $category->delete($id);
+        return response()->json('Deleted !', 200);
     }
 }

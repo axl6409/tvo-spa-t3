@@ -32,6 +32,25 @@ export const mutations = {
     state.post.push(post)
   },
 
+  [types.FETCH_POSTS_SUCCESS] (state, { post }) {
+    state.post = post
+  },
+
+  [types.FETCH_POSTS_FAILURE] (state) {
+    state.post = null
+  },
+
+  [types.FETCH_POST_BY_ID] (state, id) {
+    axios.get('/api/posts/edit/' + id)
+      .then((response) => {
+        return response
+      })
+      .catch((error) => {
+        console.log(error)
+        state.message = error
+      })
+  },
+
   [types.DELETE_POST] (state, id) {
     axios.delete('/api/posts/delete/' + id)
       .then((response) => {
@@ -39,15 +58,8 @@ export const mutations = {
       })
     var index = state.post.findIndex(p => p.id === id)
     state.post.splice(index, 1)
-  },
-
-  [types.FETCH_POST_SUCCESS] (state, { post }) {
-    state.post = post
-  },
-
-  [types.FETCH_POST_FAILURE] (state) {
-    state.post = null
   }
+
 }
 
 export const actions = {
@@ -60,10 +72,14 @@ export const actions = {
   async fetchPosts ({ commit }) {
     try {
       const { data } = await axios.get('/api/posts/index')
-      commit(types.FETCH_POST_SUCCESS, { post: data.data })
+      commit(types.FETCH_POSTS_SUCCESS, { post: data.data })
     } catch (e) {
-      commit(types.FETCH_POST_FAILURE)
+      commit(types.FETCH_POSTS_FAILURE)
     }
+  },
+
+  getPostById ({ commit}, id) {
+    commit(types.FETCH_POST_BY_ID)
   },
 
   deletePost ({ commit }, post) {

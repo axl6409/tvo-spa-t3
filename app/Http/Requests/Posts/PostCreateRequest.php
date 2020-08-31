@@ -31,7 +31,7 @@ class PostCreateRequest extends FormRequest
         return [
             'title' => 'required|max:250|unique:posts,title',
             'category' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png,bmp',
+            'image' => 'mimes:jpg,jpeg,png,bmp',
             'content' => 'required'
         ];
     }

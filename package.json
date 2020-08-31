@@ -11,12 +11,15 @@
     "lint": "eslint --fix --ext .js,.vue resources/js"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^21.0.0",
+    "@ckeditor/ckeditor5-vue": "^1.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
     "@fortawesome/free-brands-svg-icons": "^5.8.1",
     "@fortawesome/free-regular-svg-icons": "^5.8.1",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/vue-fontawesome": "^0.1.6",
     "@johmun/vue-tags-input": "^2.1.0",
+    "@tinymce/tinymce-vue": "^3.2.2",
     "animejs": "^3.2.0",
     "axios": "^0.18.1",
     "bootstrap": "^4.3.1",

@@ -88,14 +88,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        /**
         $postImage = $post->image;
         if($postImage) {
-            Storage::disk('storage')->delete('public/post/'.$postImage);
-            Storage::disk('storage')->delete('public/post/thumbnail/'.$postImage);
+            Storage::disk('public')->delete('post/'.$postImage);
+            Storage::disk('public')->delete('post/thumbnail/'.$postImage);
         }
-         * */
         $post->delete($id);
+        return response()->json('Deleted !', 200);
     }
 
     /**

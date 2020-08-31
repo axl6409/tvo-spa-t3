@@ -5,10 +5,6 @@
       Check Manifest
     </button>
 
-    <div class="dashboard-actions">
-
-    </div>
-
     <div class="dashboard-lists">
       <div class="posts-list-admin">
         <router-link :to="{ name: 'posts.create' }" class="nav-link" active-class="active">
@@ -41,10 +37,6 @@ export default {
   data () {
     return {
     }
-  },
-
-  created () {
-    console.log(this.post)
   },
 
   methods: {

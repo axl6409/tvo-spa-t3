@@ -3,13 +3,13 @@ import * as types from '../mutation-types'
 
 // State
 export const state = {
-  categories: null,
+  category: null,
   message: ''
 }
 
 // Getters
 export const getters = {
-  categories: state => state.categories,
+  categories: state => state.category,
   message: state => state.message
 }
 
@@ -32,15 +32,15 @@ export const mutations = {
   },
 
   [types.PUSH_CATEGORY] (state, category) {
-    state.categories.push(category)
+    state.category.push(category)
   },
 
   [types.FETCH_CATEGORIES_SUCCESS] (state, { categories }) {
-    state.categories = categories
+    state.category = categories
   },
 
   [types.FETCH_CATEGORIES_FAILURE] (state) {
-    state.categories = null
+    state.category = null
   },
 
   [types.DELETE_CATEGORY] (state, id) {
@@ -53,8 +53,8 @@ export const mutations = {
         console.log(error)
         state.message = 'Erreur lors de la suppresion !'
       })
-    var index = state.categories.findIndex(p => p.id === id)
-    state.categories.splice(index, 1)
+    var index = state.category.findIndex(p => p.id === id)
+    state.category.splice(index, 1)
   }
 }
 
@@ -67,7 +67,7 @@ export const actions = {
 
   async fetchCategories ({ commit }) {
     try {
-      const { data } = await axios.get('/api/categories/all')
+      const { data } = await axios.get('/api/categories/index')
       commit(types.FETCH_CATEGORIES_SUCCESS, { categories: data.data })
     } catch (e) {
       commit(types.FETCH_CATEGORIES_FAILURE)
