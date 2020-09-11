@@ -43,7 +43,7 @@ export const mutations = {
   [types.FETCH_POST_BY_ID] (state, id) {
     axios.get('/api/posts/edit/' + id)
       .then((response) => {
-        return response
+        console.log(response)
       })
       .catch((error) => {
         console.log(error)
@@ -66,7 +66,6 @@ export const actions = {
 
   savePost ({ commit, dispatch }, payload) {
     commit(types.SAVE_POST, payload)
-    commit(types.PUSH_POST, payload)
   },
 
   async fetchPosts ({ commit }) {
@@ -78,8 +77,8 @@ export const actions = {
     }
   },
 
-  getPostById ({ commit}, id) {
-    commit(types.FETCH_POST_BY_ID)
+  getPostById ({ commit }, id) {
+    commit(types.FETCH_POST_BY_ID, { id: id })
   },
 
   deletePost ({ commit }, post) {

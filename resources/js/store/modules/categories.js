@@ -3,7 +3,7 @@ import * as types from '../mutation-types'
 
 // State
 export const state = {
-  category: null,
+  category: [],
   message: ''
 }
 
@@ -15,25 +15,6 @@ export const getters = {
 
 // Mutations
 export const mutations = {
-  [types.SAVE_CAT] (state, category) {
-    axios.post('/api/categories/store', category, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-      .then((response) => {
-        console.log(response)
-        state.message = 'Catégorie Créée !'
-      })
-      .catch((error) => {
-        console.log(error)
-        state.message = 'Erreur lors de la création !'
-      })
-  },
-
-  [types.PUSH_CATEGORY] (state, category) {
-    state.category.push(category)
-  },
 
   [types.FETCH_CATEGORIES_SUCCESS] (state, { categories }) {
     state.category = categories
@@ -60,11 +41,6 @@ export const mutations = {
 
 export const actions = {
 
-  saveCategory ({ commit, dispatch }, payload) {
-    commit(types.SAVE_CAT, payload)
-    commit(types.PUSH_CATEGORY, payload)
-  },
-
   async fetchCategories ({ commit }) {
     try {
       const { data } = await axios.get('/api/categories/index')
@@ -74,7 +50,18 @@ export const actions = {
     }
   },
 
-  deleteCategory ({commit}, category) {
+  async fetchCategoryById ({ commit }, id) {
+    try {
+      const { data } = await axios.get('/api/categories/edit/' + id)
+      console.log(data)
+      commit(types.FETCH_CATEGORIES_SUCCESS, { categories: data.data })
+    } catch (e) {
+      console.log(e)
+      commit(types.FETCH_CATEGORIES_FAILURE)
+    }
+  },
+
+  deleteCategory ({ commit }, category) {
     commit(types.DELETE_CATEGORY, category)
   }
 }

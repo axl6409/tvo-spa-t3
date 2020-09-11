@@ -1,24 +1,25 @@
 <template>
   <div>
-    <h2 class="post-block-title">{{ post.title }}</h2>
+    <h2 class="post-block-title">
+      {{ post.title }}
+    </h2>
     <img class="post-block-image" :src="path + post.image" alt="">
   </div>
 </template>
 
 <script>
-  export default {
+export default {
 
-    props: ['post'],
+  props: ['post'],
 
-    data () {
-      return {
-        path: 'images/post/thumbnail/'
-      }
-    },
-
-    mounted () {
-      console.log(process.env.MIX_APP_URL)
+  data () {
+    return {
+      path: 'images/post/thumbnail/'
     }
+  },
 
+  mounted () {
   }
+
+}
 </script>

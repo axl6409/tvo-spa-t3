@@ -64,7 +64,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return response()->json('Post finded !', 200);
     }
 
     /**

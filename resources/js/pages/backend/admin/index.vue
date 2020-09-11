@@ -8,15 +8,19 @@
     <div class="dashboard-lists">
       <div class="posts-list-admin">
         <router-link :to="{ name: 'posts.create' }" class="nav-link" active-class="active">
-          <p class="new-post-btn">Créer Un nouveau Guide</p>
+          <p class="new-post-btn">
+            Créer Un nouveau Guide
+          </p>
         </router-link>
-        <posts-list-admin></posts-list-admin>
+        <posts-list-admin />
       </div>
       <div class="categories-list-admin">
         <router-link :to="{ name: 'categories.create' }" class="nav-link" active-class="active">
-          <p class="new-post-btn">Créer Une nouvelle Catégorie</p>
+          <p class="new-post-btn">
+            Créer Une nouvelle Catégorie
+          </p>
         </router-link>
-        <categories-list-admin></categories-list-admin>
+        <categories-list-admin />
       </div>
     </div>
   </div>

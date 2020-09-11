@@ -1,13 +1,16 @@
 <template>
   <form @submit.prevent="createCategory">
-
     <!-- Errors -->
-    <div class="form-errors-block" v-if="errors.length">
+    <div v-if="errors.length" class="form-errors-block">
       <p>Corriger les erreurs ci dessous:</p>
       <ul class="form-errors-list">
-        <li class="form-errors-items" v-for="error in errors">{{ error }}</li>
+        <li v-for="error in errors" class="form-errors-items">
+          {{ error }}
+        </li>
       </ul>
-      <button class="btn btn-light" @click="closeBox">Close</button>
+      <button class="btn btn-light" @click="closeBox">
+        Close
+      </button>
     </div>
 
     <!-- Title -->
@@ -29,7 +32,7 @@
     <!-- Image -->
     <div class="form-group">
       <label for="image" class="form-label">Image</label>
-      <input type="file" id="image" name="image" class="form-control" @change="selectedImage">
+      <input id="image" type="file" name="image" class="form-control" @change="selectedImage">
     </div>
 
     <!-- Submit Button -->
@@ -40,44 +43,55 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import axios from 'axios'
+import { mapGetters } from 'vuex'
 
-  export default {
-    middleware: 'auth',
+export default {
+  middleware: 'auth',
 
-    data () {
-      return {
-        category: {
-          name: '',
-          description: '',
-          image: null
-        },
-        errors: []
-      }
-    },
-
-    computed: mapGetters({
-      categories: 'categories/categories'
-    }),
-
-    beforeCreate () {
-      this.$store.dispatch('categories/fetchCategories')
-    },
-
-    methods: {
-      selectedImage (event) {
-        this.category.image = event.target.files[0]
+  data () {
+    return {
+      category: {
+        name: '',
+        description: '',
+        image: null
       },
-      createCategory (e) {
-        let formData = new FormData(e.target)
+      errors: []
+    }
+  },
 
-        formData.append('name', this.category.name)
-        formData.append('description', this.category.description)
-        formData.append('image', this.category.image)
+  computed: mapGetters({
+    categories: 'categories/categories'
+  }),
 
-        this.$store.dispatch('categories/saveCategory', formData)
-        this.$router.push({ name: 'admin' })
-      }
+  beforeCreate () {
+    this.$store.dispatch('categories/fetchCategories')
+  },
+
+  methods: {
+    selectedImage (event) {
+      this.category.image = event.target.files[0]
+    },
+    createCategory (e) {
+      let formData = new FormData(e.target)
+
+      formData.append('name', this.category.name)
+      formData.append('description', this.category.description)
+      formData.append('image', this.category.image)
+
+      axios.post('/api/categories/store', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        console.log(response)
+        this.$store.dispatch('categories/fetchCategories')
+      }).catch((error) => {
+        console.log(error)
+      })
+
+      this.$router.push({ name: 'admin' })
     }
   }
+}
 </script>

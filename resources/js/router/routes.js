@@ -10,6 +10,7 @@ export default [
   { path: '/register', name: 'register', component: page('auth/register.vue') },
   { path: '/home', name: 'home', component: page('home.vue') },
   { path: '/posts', name: 'posts', component: page('frontend/posts/index.vue') },
+  { path: '/posts/single/:post', name: 'posts.single', component: page('frontend/posts/single.vue'), props: { default: true } },
   { path: '/about', name: 'about', component: page('frontend/about.vue') },
 
   // Log User Pages

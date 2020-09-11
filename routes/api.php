@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('/categories')->group( function () {
         Route::get('/index', 'Backend\CategoryController@index');
-        Route::get('/edit{id}', 'Backend\CategoryController@edit');
+        Route::get('/edit/{id}', 'Backend\CategoryController@edit');
         Route::post('/store', 'Backend\CategoryController@store');
         Route::put('/update/{id}', 'Backend\CategoryController@update');
         Route::delete('/delete/{id}', 'Backend\CategoryController@destroy');
