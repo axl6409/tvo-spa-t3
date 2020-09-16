@@ -10,7 +10,7 @@ export default [
   { path: '/register', name: 'register', component: page('auth/register.vue') },
   { path: '/home', name: 'home', component: page('home.vue') },
   { path: '/posts', name: 'posts', component: page('frontend/posts/index.vue') },
-  { path: '/posts/single/:post', name: 'posts.single', component: page('frontend/posts/single.vue'), props: { default: true } },
+  { path: '/posts/single/:id', name: 'posts.single', component: page('frontend/posts/single.vue'), props: { default: true } },
   { path: '/about', name: 'about', component: page('frontend/about.vue') },
 
   // Log User Pages
@@ -21,7 +21,7 @@ export default [
   // Admin Pages
   { path: '/admin', name: 'admin', component: page('backend/admin/index.vue') },
   { path: '/posts/create', name: 'posts.create', component: page('backend/admin/posts/create.vue') },
-  { path: '/posts/edit/:post', name: 'posts.edit', component: page('backend/admin/posts/edit.vue'), props: { default: true } },
+  { path: '/posts/edit/:id', name: 'posts.edit', component: page('backend/admin/posts/edit.vue'), props: { default: true } },
   { path: '/categories/create', name: 'categories.create', component: page('backend/admin/categories/create.vue') },
   { path: '/categories/edit/:id', name: 'categories.edit', component: page('backend/admin/categories/edit.vue'), props: { default: true } },
 

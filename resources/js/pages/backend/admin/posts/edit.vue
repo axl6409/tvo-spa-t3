@@ -5,7 +5,7 @@
       <div class="form-group">
         <label for="title" class="form-label">Title</label>
         <input id="title" :title="post.title" type="text" name="title"
-               class="form-control"
+               class="form-control" v-model="post.title"
         >
       </div>
 
@@ -13,15 +13,19 @@
       <div class="form-group">
         <label for="category" class="form-label">Category</label>
         <select id="category" :category="post.category" name="category"
-                class="form-control"
+                class="form-control" v-model="post.category"
         >
-          <option disabled value="">
+          <option disabled :value="post.category">
             Choisir une catégorie
           </option>
           <option v-for="(category) in categories" :key="category.id" :value="category.id">
             {{ category.name }}
           </option>
         </select>
+      </div>
+
+      <div class="post-edit-image">
+        <img :src="path + post.image" alt="">
       </div>
 
       <!-- Image -->
@@ -51,6 +55,7 @@
           }"
           name="content"
           :content="post.content"
+          v-model="post.content"
         />
       </div>
 
@@ -63,6 +68,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapGetters } from 'vuex'
 import Editor from '@tinymce/tinymce-vue'
 
@@ -77,24 +83,51 @@ export default {
 
   data () {
     return {
-      post: {}
+      post: {
+        user_id: '',
+        title: '',
+        category: '',
+        image: null,
+        content: ''
+      },
+      path: "images/post/thumbnail/"
     }
   },
 
-  computed: mapGetters({
-    user: 'auth/user',
-    categories: 'categories/categories',
-    posts: 'posts/posts'
-  }),
+  computed: {
+    ...mapGetters({
+        user: 'auth/user',
+        categories: 'categories/categories'
+      }),
+  },
+
 
   beforeCreate () {
     this.$store.dispatch('categories/fetchCategories')
-    this.post = this.$store.dispatch('posts/getPostById', this.props.id)
+  },
+
+  created() {
+    this.getPostById(this.$route.params.id)
   },
 
   methods: {
     selectedImage (event) {
       this.post.image = event.target.files[0]
+    },
+
+    getPostById (id) {
+      axios.get('/api/posts/edit/' + id)
+      .then((response) => {
+        console.log(response)
+        this.post.user_id = response.data.user_id
+        this.post.title = response.data.title
+        this.post.category = response.data.category
+        this.post.image = response.data.image
+        this.post.content = response.data.content
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     },
     createPost (e) {
       this.post.userId = this.user.id

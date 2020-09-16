@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/update', 'Backend\PostController@update');
         Route::delete('/delete/{id}', 'Backend\PostController@destroy');
         Route::patch('/publish/{id}', 'Backend\PostController@publish');
+        Route::get('/get/{id}', 'Frontend\PostController@get');
     });
 
     Route::prefix('/categories')->group( function () {
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/store', 'Backend\CategoryController@store');
         Route::put('/update/{id}', 'Backend\CategoryController@update');
         Route::delete('/delete/{id}', 'Backend\CategoryController@destroy');
+        Route::get('/get/{id}', 'Frontend\CategoryController@get');
     });
 
     Route::prefix('/tags')->group( function () {
@@ -66,9 +68,11 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::post('register', 'Auth\RegisterController@register');
 
-    Route::prefix('/posts')->group( function () {
-        Route::get('/all', 'Frontend\PostController@all');
-    });
+    Route::get('/allPost', 'Frontend\PostController@all');
+    Route::get('/getPost/{id}', 'Frontend\PostController@get');
+
+    Route::get('/allCategories', 'Frontend\CategoryController@all');
+    Route::get('/getCategories/{id}', 'Frontend\CategoryController@get');
 
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');

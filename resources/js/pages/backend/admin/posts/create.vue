@@ -138,7 +138,7 @@ export default {
       if (!this.post.content) {
         this.errors.push('Contenu Requis')
       }
-
+      console.log(formData)
       if (this.errors.length === 0) {
         axios.post('/api/posts/store', formData, {
           headers: {

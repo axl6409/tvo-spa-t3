@@ -20,7 +20,7 @@
     <div class="posts-public-list">
       <ul>
         <li v-for="post in posts" :key="post.id" class="post-block">
-          <router-link :to="{ name: 'posts.single'}">
+          <router-link :to="{ name: 'posts.single', params: { id: post.id }}">
             <post-block :post="post" />
           </router-link>
         </li>

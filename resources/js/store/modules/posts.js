@@ -44,6 +44,7 @@ export const mutations = {
     axios.get('/api/posts/edit/' + id)
       .then((response) => {
         console.log(response)
+        state.post = response.data
       })
       .catch((error) => {
         console.log(error)
@@ -78,7 +79,7 @@ export const actions = {
   },
 
   getPostById ({ commit }, id) {
-    commit(types.FETCH_POST_BY_ID, { id: id })
+    commit(types.FETCH_POST_BY_ID, id)
   },
 
   deletePost ({ commit }, post) {

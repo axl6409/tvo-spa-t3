@@ -30,7 +30,7 @@
         <th>
           <i class="fas fa-times" />
           <button class="edit-button">
-            <router-link :to="{ name: 'posts.edit', params: { post: post } }">
+            <router-link :to="{ name: 'posts.edit', params: { id: post.id } }">
               <fa icon="edit" fixed-width />
             </router-link>
           </button>
