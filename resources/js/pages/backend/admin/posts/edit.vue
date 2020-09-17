@@ -1,24 +1,24 @@
 <template>
   <div class="post-edit">
-    <form @submit.prevent="createPost">
+    <form id="form" @submit.prevent="createPost">
       <!-- Title -->
       <div class="form-group">
         <label for="title" class="form-label">Title</label>
-        <input id="title" :title="post.title" type="text" name="title"
-               class="form-control" v-model="post.title"
+        <input id="title" v-model="post.title" :title="post.title" type="text"
+               name="title" class="form-control"
         >
       </div>
 
       <!-- Category -->
       <div class="form-group">
         <label for="category" class="form-label">Category</label>
-        <select id="category" :category="post.category" name="category"
-                class="form-control" v-model="post.category"
+        <select id="category" v-model="post.category" :value="post.category" :category="post.category"
+                name="category" class="form-control"
         >
           <option disabled :value="post.category">
             Choisir une catégorie
           </option>
-          <option v-for="(category) in categories" :key="category.id" :value="category.id">
+          <option v-for="(category) in categories" :key="category.id" :value="post.category">
             {{ category.name }}
           </option>
         </select>
@@ -29,7 +29,7 @@
       </div>
 
       <!-- Image -->
-      <div class="form-group">
+      <div class="form-group post-edit-select-image">
         <label for="content" class="form-label">Image</label>
         <input type="file" name="image" class="form-control" @change="selectedImage">
       </div>
@@ -39,6 +39,7 @@
         <label for="content" class="form-label">Content</label>
         <editor
           id="content"
+          v-model="post.content"
           api-key="qn9d6exax4dzon3nlr0h2q2uezhebpdn6gu8tntucbrsjnxm"
           :init="{
             height: 500,
@@ -55,7 +56,6 @@
           }"
           name="content"
           :content="post.content"
-          v-model="post.content"
         />
       </div>
 
@@ -84,29 +84,29 @@ export default {
   data () {
     return {
       post: {
+        id: '',
         user_id: '',
         title: '',
         category: '',
         image: null,
         content: ''
       },
-      path: "images/post/thumbnail/"
+      path: '/images/post/thumbnail/'
     }
   },
 
   computed: {
     ...mapGetters({
-        user: 'auth/user',
-        categories: 'categories/categories'
-      }),
+      user: 'auth/user',
+      categories: 'categories/categories'
+    })
   },
-
 
   beforeCreate () {
     this.$store.dispatch('categories/fetchCategories')
   },
 
-  created() {
+  created () {
     this.getPostById(this.$route.params.id)
   },
 
@@ -117,28 +117,41 @@ export default {
 
     getPostById (id) {
       axios.get('/api/posts/edit/' + id)
-      .then((response) => {
-        console.log(response)
-        this.post.user_id = response.data.user_id
-        this.post.title = response.data.title
-        this.post.category = response.data.category
-        this.post.image = response.data.image
-        this.post.content = response.data.content
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+        .then((response) => {
+          this.post.id = response.data.id
+          this.post.user_id = response.data.user_id
+          this.post.title = response.data.title
+          this.post.category = response.data.category
+          this.post.image = response.data.image
+          this.post.content = response.data.content
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
     createPost (e) {
       this.post.userId = this.user.id
       let formData = new FormData(e.target)
+      let id = this.post.id
 
       formData.append('title', this.post.title)
       formData.append('category', this.post.category)
       formData.append('image', this.post.image)
       formData.append('content', this.post.content)
 
-      this.$store.dispatch('posts/updatePost', formData)
+      axios.patch('/api/posts/update/' + id, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((response) => {
+          console.log(response)
+          this.$store.dispatch('posts/fetchPosts')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+
       this.$router.push({ name: 'admin' })
     }
   }

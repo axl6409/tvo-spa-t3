@@ -55,8 +55,9 @@ class CategoryCreateRequest extends FormRequest
 
             $path = "images/";
 
-            $postImage = Image::make($image)->fit(1060, 1060)
-                ->save(public_path($path).'category/'.$imageName);
+            $postImage = Image::make($image)->resize(null, 1080, function ($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path($path).'category/'.$imageName);
 
             $thumbnail = Image::make($image)->fit(550, 550)
                 ->save(public_path($path).'category/thumbnail/'.$imageName);

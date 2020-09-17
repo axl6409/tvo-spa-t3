@@ -75,11 +75,12 @@ export default {
     createCategory (e) {
       let formData = new FormData(e.target)
 
+      formData.append('_method', 'PATCH')
       formData.append('name', this.category.name)
       formData.append('description', this.category.description)
       formData.append('image', this.category.image)
-      console.log(formData)
-      axios.put('/api/categories/update/' + this.$route.params.id, formData, {
+
+      axios.patch('/api/categories/update/' + this.$route.params.id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

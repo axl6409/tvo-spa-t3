@@ -21,10 +21,27 @@ export const mutations = {
       }
     })
       .then((response) => {
+        console.log(response)
         state.message = 'Post created with success !'
       })
       .catch((error) => {
         console.log(error)
+      })
+  },
+
+  [types.POST_UPDATE] (state, post, id) {
+    axios.patch('/api/posts/update/' + id, post, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then((response) => {
+        state.message = 'Post updated with success !'
+        console.log(response)
+      })
+      .catch((error) => {
+        state.message = error
+        console.log(state.message)
       })
   },
 
@@ -67,6 +84,10 @@ export const actions = {
 
   savePost ({ commit, dispatch }, payload) {
     commit(types.SAVE_POST, payload)
+  },
+
+  updatePost ({ commit }, payload, id) {
+    commit(types.POST_UPDATE, payload, id)
   },
 
   async fetchPosts ({ commit }) {

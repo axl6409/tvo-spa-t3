@@ -56,8 +56,9 @@ class PostCreateRequest extends FormRequest
 
             $path = "images/";
 
-            $postImage = Image::make($image)->fit(1060, 1060)
-                ->save(public_path($path).'post/'.$imageName);
+            $postImage = Image::make($image)->resize(null, 1060, function ($constraint){
+                $constraint->aspectRatio();
+            })->save(public_path($path).'post/'.$imageName);
 
             $thumbnail = Image::make($image)->fit(550, 550)
                 ->save(public_path($path).'post/thumbnail/'.$imageName);

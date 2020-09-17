@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/create', 'Backend\PostController@create');
         Route::get('/edit/{id}', 'Backend\PostController@edit');
         Route::post('/store', 'Backend\PostController@store');
-        Route::post('/update', 'Backend\PostController@update');
+        Route::patch('/update/{id}', 'Backend\PostController@update');
         Route::delete('/delete/{id}', 'Backend\PostController@destroy');
         Route::patch('/publish/{id}', 'Backend\PostController@publish');
         Route::get('/get/{id}', 'Frontend\PostController@get');
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/index', 'Backend\CategoryController@index');
         Route::get('/edit/{id}', 'Backend\CategoryController@edit');
         Route::post('/store', 'Backend\CategoryController@store');
-        Route::put('/update/{id}', 'Backend\CategoryController@update');
+        Route::patch('/update/{id}', 'Backend\CategoryController@update');
         Route::delete('/delete/{id}', 'Backend\CategoryController@destroy');
         Route::get('/get/{id}', 'Frontend\CategoryController@get');
     });
@@ -61,18 +61,18 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::put('/update/{id}', 'Backend\TagController@update');
         Route::delete('/delete/{id}', 'Backend\TagController@destroy');
     });
+
+    Route::get('allPost', 'Frontend\PostController@all');
+    Route::get('getPost/{id}', 'Frontend\PostController@get');
+
+    Route::get('allCategories', 'Frontend\CategoryController@all');
+    Route::get('getCategories/{id}', 'Frontend\CategoryController@get');
 });
 
 Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('login', 'Auth\LoginController@login');
     Route::post('register', 'Auth\RegisterController@register');
-
-    Route::get('/allPost', 'Frontend\PostController@all');
-    Route::get('/getPost/{id}', 'Frontend\PostController@get');
-
-    Route::get('/allCategories', 'Frontend\CategoryController@all');
-    Route::get('/getCategories/{id}', 'Frontend\CategoryController@get');
 
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');

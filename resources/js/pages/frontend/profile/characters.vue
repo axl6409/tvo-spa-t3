@@ -61,7 +61,11 @@ export default {
   },
 
   mounted () {
-    this.$loading = this.$refs.loading
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+
+      setTimeout(() => this.$nuxt.$loading.finish(), 500)
+    })
   },
 
   methods: {

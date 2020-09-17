@@ -62,6 +62,7 @@
                alignleft aligncenter alignright alignjustify | \
                bullist numlist outdent indent | removeformat | help'
           }"
+          output-format="html"
           name="content"
         />
       </div>
