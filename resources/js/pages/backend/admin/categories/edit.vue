@@ -80,7 +80,7 @@ export default {
       formData.append('description', this.category.description)
       formData.append('image', this.category.image)
 
-      axios.patch('/api/categories/update/' + this.$route.params.id, formData, {
+      axios.post('/api/categories/update/' + this.$route.params.id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

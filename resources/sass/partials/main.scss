@@ -1,5 +1,5 @@
 body {
-  background-color: #000000;
+  background-color: #dcdcdc;
   font-family: $mainFont;
 }
 
@@ -34,10 +34,8 @@ ul {
   color: $yellow0;
 }
 
-.public-page-title {
-  width: 100%;
-  text-align: center;
-  font-size: 30px;
-  color: $white0;
+.dropdown-dark {
+  background-color: rgb(44,44,44);
+  border-radius: 5px;
 }
 

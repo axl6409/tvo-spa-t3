@@ -30,7 +30,7 @@ export const mutations = {
   },
 
   [types.POST_UPDATE] (state, post, id) {
-    axios.patch('/api/posts/update/' + id, post, {
+    axios.post('/api/posts/update/' + id, post, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -82,12 +82,12 @@ export const mutations = {
 
 export const actions = {
 
-  savePost ({ commit, dispatch }, payload) {
-    commit(types.SAVE_POST, payload)
+  savePost ({ commit, dispatch }, post) {
+    commit(types.SAVE_POST, post)
   },
 
-  updatePost ({ commit }, payload, id) {
-    commit(types.POST_UPDATE, payload, id)
+  updatePost ({ commit }, post, id) {
+    commit(types.POST_UPDATE, post, id)
   },
 
   async fetchPosts ({ commit }) {
