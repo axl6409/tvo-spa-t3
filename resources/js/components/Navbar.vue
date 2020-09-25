@@ -39,9 +39,13 @@
                 <fa icon="sign-out-alt" fixed-width />
                 {{ $t('logout') }}
               </a>
-              <router-link :to="{ name: 'admin' }" class="nav-link pl-3" active-class="active">
+              <router-link v-if="user.role_id < 3" :to="{ name: 'admin' }" class="nav-link pl-3" active-class="active">
                 <fa icon="user" fixed-width />
-                {{ $t('admin') }}
+                {{ $t('Guides') }}
+              </router-link>
+              <router-link v-if="user.role_id < 2" :to="{ name: 'users' }" class="nav-link pl-3" active-class="active">
+                <fa icon="user" fixed-width />
+                {{ $t('Users') }}
               </router-link>
             </div>
           </li>
@@ -67,7 +71,6 @@
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
-import Cookies from 'js-cookie'
 
 export default {
   components: {
@@ -87,8 +90,6 @@ export default {
     async logout () {
       // Log out the user.
       await this.$store.dispatch('auth/logout')
-      Cookies.remove()
-      console.log(Cookies.get())
       // Redirect to login.
       this.$router.push({ name: 'login' })
     }

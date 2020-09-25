@@ -24,6 +24,8 @@ export default [
   { path: '/posts/edit/:id', name: 'posts.edit', component: page('backend/admin/posts/edit.vue'), props: { default: true } },
   { path: '/categories/create', name: 'categories.create', component: page('backend/admin/categories/create.vue') },
   { path: '/categories/edit/:id', name: 'categories.edit', component: page('backend/admin/categories/edit.vue'), props: { default: true } },
+  { path: '/users', name: 'users', component: page('backend/admin/users/index.vue') },
+  { path: '/user-assign/:id', name: 'users.assign', component: page('backend/admin/users/assign.vue'), props: { default: true } },
 
   { path: '*', component: page('errors/404.vue') }
 ]

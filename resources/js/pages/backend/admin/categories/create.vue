@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="createCategory">
+  <form id="form" class="custom-form" @submit.prevent="createCategory">
     <!-- Errors -->
     <div v-if="errors.length" class="form-errors-block">
       <p>Corriger les erreurs ci dessous:</p>
@@ -13,26 +13,28 @@
       </button>
     </div>
 
+    <h1 class="form-edit-title">Nouvelle Catégorie</h1>
+
     <!-- Title -->
     <div class="form-group">
-      <label for="name" class="form-label">Name</label>
+      <label for="name" class="form-label form-custom-label">Name</label>
       <input id="name" v-model="category.name" type="text" name="name"
-             class="form-control"
+             class="form-control custom-form-fields"
       >
     </div>
 
     <!-- Content -->
     <div class="form-group">
-      <label for="description" class="form-label">Description</label>
+      <label for="description" class="form-label form-custom-label">Description</label>
       <input id="description" v-model="category.description" type="text" name="description"
-             class="form-control"
+             class="form-control custom-form-fields"
       >
     </div>
 
     <!-- Image -->
     <div class="form-group">
-      <label for="image" class="form-label">Image</label>
-      <input id="image" type="file" name="image" class="form-control" @change="selectedImage">
+      <label for="image" class="form-label form-custom-label">Image</label>
+      <input id="image" type="file" name="image" class="form-control custom-form-fields" @change="selectedImage">
     </div>
 
     <!-- Submit Button -->
@@ -47,7 +49,7 @@ import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
-  middleware: 'auth',
+  middleware: 'admin',
 
   data () {
     return {

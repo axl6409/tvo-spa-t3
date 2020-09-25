@@ -1,6 +1,21 @@
-.single-post-image {
+.single-post {
+  position: relative;
+}
+
+.single-header {
+  position: absolute;
+  top: 250px;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  padding: 2%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.single-post-image img {
   width: 100%;
   margin-bottom: 5%;
+  box-shadow: 0px 0px 39px 20px rgba(0,0,0,0.8);
 }
 
 .single-post-title {
@@ -13,6 +28,9 @@
   text-align: center;
   color: $white0;
   width: 100%;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
 }
 
 .single-post-content {
@@ -21,4 +39,5 @@
   height: auto;
   background-color: rgba(255,255,255,0.8);
   padding: 2% 5%;
+  box-shadow: 0px 0px 39px 20px rgba(0,0,0,0.8);
 }

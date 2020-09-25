@@ -23,7 +23,7 @@
     <!-- Image -->
     <div class="form-group">
       <label for="image" class="form-label">Image</label>
-      <input id="image" type="file" name="image" class="form-control" @change="selectedImage">
+      <input id="image" type="file" name="image" class="form-control" :placeholder="category.image" @ @change="selectedImage">
     </div>
 
     <!-- Submit Button -->
@@ -48,6 +48,7 @@ export default {
         description: '',
         image: null
       },
+      old_image: '',
       path: 'images/category/thumbnail/'
     }
   },
@@ -58,7 +59,7 @@ export default {
 
   methods: {
     selectedImage (event) {
-      this.category.image = event.target.files[0]
+      this.category.image = event.target.files[0] || this.category.image
     },
     getCategoryById (id) {
       axios.get('/api/categories/edit/' + id)

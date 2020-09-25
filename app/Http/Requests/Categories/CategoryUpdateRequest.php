@@ -31,7 +31,6 @@ class CategoryUpdateRequest extends FormRequest
         return [
             'name' => 'required|max:250',
             'description' => 'required|max:250',
-            'image' => 'mimes:jpg,jpeg,png,bmp'
         ];
     }
 
@@ -40,29 +39,33 @@ class CategoryUpdateRequest extends FormRequest
         $image = $this->file('image');
         $slug = Str::slug($this->input('name'));
 
-        if (isset($image)) {
+        $imageExt = $image->getClientOriginalExtension();
+        $allowedExt = ['.jpg','.jpeg','.png','bmp'];
 
-            $imageExt = $image->getClientOriginalExtension();
-            $currentDate = Carbon::now()->toDateString();
-            $imageName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $imageExt;
+        if (! in_array($imageExt, $allowedExt)) {
+            if (isset($image)) {
 
-            if (!Storage::disk('public')->exists('category')) {
-                Storage::disk('public')->makeDirectory('category');
+                $currentDate = Carbon::now()->toDateString();
+                $imageName = $slug . '-' . $currentDate . '-' . uniqid() . '.' . $imageExt;
+
+                if (!Storage::disk('public')->exists('category')) {
+                    Storage::disk('public')->makeDirectory('category');
+                }
+                if (!Storage::disk('public')->exists('category/thumbnail')) {
+                    Storage::disk('public')->makeDirectory('category/thumbnail');
+                }
+
+                $path = "images/";
+
+                $postImage = Image::make($image)->fit(1060, 1060)
+                    ->save(public_path($path).'category/'.$imageName);
+
+                $thumbnail = Image::make($image)->fit(550, 550)
+                    ->save(public_path($path).'category/thumbnail/'.$imageName);
+
+            } else {
+                $imageName = $this->input('image');
             }
-            if (!Storage::disk('public')->exists('category/thumbnail')) {
-                Storage::disk('public')->makeDirectory('category/thumbnail');
-            }
-
-            $path = "images/";
-
-            $postImage = Image::make($image)->fit(1060, 1060)
-                ->save(public_path($path).'category/'.$imageName);
-
-            $thumbnail = Image::make($image)->fit(550, 550)
-                ->save(public_path($path).'category/thumbnail/'.$imageName);
-
-        } else {
-            $imageName = 'default.jpg';
         }
 
         return [

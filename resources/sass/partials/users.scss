@@ -1,0 +1,14 @@
+.admin-users-index {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.users-list {
+  width: 48%;
+  margin: 1%;
+}
+
+.users-list h2 {
+  margin-bottom: 80px;
+}

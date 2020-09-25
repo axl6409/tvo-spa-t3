@@ -24,7 +24,7 @@
         <th scope="row">
           {{ post.id }}
         </th>
-        <th>{{ post.title }}</th>
+        <th>{{ post.title | truncate }}</th>
         <th>{{ post.is_publish ? 'Publié' : 'Brouillon' }}</th>
         <th>{{ post.created_at }}</th>
         <th>
@@ -37,7 +37,7 @@
           <button class="delete-button" @click="deletePost(post.id)">
             <fa icon="times" fixed-width />
           </button>
-          <button class="publish-button">
+          <button class="publish-button" @click="publishPost(post.id)">
             <fa icon="paper-plane" fixed-width />
           </button>
         </th>
@@ -52,6 +52,18 @@ import { mapState } from 'vuex'
 
 export default {
 
+  filters: {
+    truncate: function (text) {
+      if (!text) return ''
+      text = text.toString()
+      if (text.length > 65) {
+        return text.substring(0, 65) + '...'
+      } else {
+        return text
+      }
+    }
+  },
+
   data () {
     return {
     }
@@ -63,9 +75,18 @@ export default {
 
   created () {
     this.$store.dispatch('posts/fetchPosts')
+    this.truncateTitle()
   },
 
   methods: {
+    truncateTitle () {
+      if (this.$store.state.posts.post.title > 10) {
+        return this.$store.state.posts.post.title.substring(0, 10) + '...'
+      }
+    },
+    publishPost (id) {
+      this.$store.dispatch('posts/publishPost', id)
+    },
     deletePost (postId) {
       this.$store.dispatch('posts/deletePost', postId)
     }

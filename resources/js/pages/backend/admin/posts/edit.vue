@@ -1,6 +1,6 @@
 <template>
   <div class="post-edit">
-    <form id="form" @submit.prevent="createPost">
+    <form id="form" class="custom-form" @submit.prevent="createPost">
       <!-- Errors -->
       <div v-if="errors.length" class="form-errors-block">
         <p>Corriger les erreurs ci dessous:</p>
@@ -16,17 +16,17 @@
 
       <!-- Title -->
       <div class="form-group">
-        <label for="title" class="form-label">Titre du guide</label>
+        <label for="title" class="form-label form-custom-label">Titre du guide</label>
         <input id="title" v-model="post.title" :title="post.title" type="text"
-               name="title" class="form-control"
+               name="title" class="form-control custom-form-fields"
         >
       </div>
 
       <!-- Category -->
       <div class="form-group">
-        <label for="category" class="form-label">Categorie du guide</label>
+        <label for="category" class="form-label form-custom-label">Categorie du guide</label>
         <select id="category" v-model="post.category"
-                name="category" class="form-control"
+                name="category" class="form-control custom-form-fields"
         >
           <option disabled>
             Choisir une catégorie
@@ -43,19 +43,19 @@
 
       <!-- Image -->
       <div class="form-group post-edit-select-image">
-        <label for="content" class="form-label">Image d'en tête</label>
-        <input type="file" name="image" class="form-control" @change="selectedImage">
+        <label for="content" class="form-label form-custom-label">Image d'en tête</label>
+        <input type="file" name="image" class="form-control custom-form-fields" @change="selectedImage">
       </div>
 
       <!-- Content -->
       <div class="form-group">
-        <label for="content" class="form-label">Contenu du guide</label>
+        <label for="content" class="form-label form-custom-label">Contenu du guide</label>
         <editor
           id="content"
           v-model="post.content"
           api-key="qn9d6exax4dzon3nlr0h2q2uezhebpdn6gu8tntucbrsjnxm"
           :init="{
-            height: 500,
+            height: 1000,
             menubar: false,
             plugins: [
               'advlist autolink lists link image charmap print preview anchor',

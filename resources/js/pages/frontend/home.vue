@@ -1,20 +1,42 @@
 <template>
-  <div class="home-container">
-    <h1 class="home-main-title">Tempus Vincit Omnia</h1>
-    <p class="home-main-subtitle">Destiny 2 - Clan PC</p>
+  <div class="home-title-container">
+    <homeIntro :infos="infos" />
+
+    <homeClan />
   </div>
 </template>
 
 <script>
+
+import homeIntro from '../../components/sections/homeIntro'
+import homeClan from '../../components/sections/homeClan'
+import { mapGetters } from 'vuex'
+
 export default {
   layout: 'default',
 
-  metaInfo () {
-    return { title: this.$t('home') }
+  components: {
+    homeIntro,
+    homeClan
   },
 
-  data: () => ({
-    title: window.config.appName
-  })
+  data () {
+    return {
+      clanDetails: {}
+    }
+  },
+
+  computed: mapGetters({
+    infos: 'clan/infos',
+    members: 'clan/members'
+  }),
+
+  beforeCreate () {
+    this.$store.dispatch('clan/fetchInfos')
+    this.$store.dispatch('clan/fetchMembers')
+  },
+
+  methods: {
+  }
 }
 </script>

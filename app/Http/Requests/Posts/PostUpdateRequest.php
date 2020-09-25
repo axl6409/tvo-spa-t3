@@ -29,9 +29,8 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:250|unique:posts,title',
+            'title' => 'required|max:250',
             'category' => 'required',
-            'image' => 'mimes:jpg,jpeg,png,bmp',
             'content' => 'required'
         ];
     }
@@ -63,6 +62,8 @@ class PostUpdateRequest extends FormRequest
             $thumbnail = Image::make($image)->fit(550, 550)
                 ->save(public_path($path).'post/thumbnail/'.$imageName);
 
+        } else {
+            $imageName = $this->input('image');
         }
 
         return [

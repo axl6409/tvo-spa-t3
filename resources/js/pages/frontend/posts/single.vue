@@ -1,15 +1,19 @@
 <template>
   <div class="single-post">
-    <img class="single-post-image" :src="path + post.image" alt="">
-    <div class="single-header" alt="">
-      <h1 class="single-post-title">
-        {{ post.title }}
-      </h1>
-      <p class="single-post-category">
-        {{ category.name }}
-      </p>
+    <div class="single-post-image">
+      <img :src="path + post.image" alt="">
     </div>
-    <div v-html="post.content" class="single-post-content">
+
+    <div class="single-post-body">
+      <div class="single-header" alt="">
+        <h1 class="single-post-title">
+          {{ post.title }}
+        </h1>
+        <p class="single-post-category">
+          Catégorie: {{ category.name }}
+        </p>
+      </div>
+      <div class="single-post-content" v-html="post.content" />
     </div>
   </div>
 </template>

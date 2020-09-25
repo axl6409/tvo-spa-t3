@@ -49,6 +49,17 @@ export const mutations = {
     state.post.push(post)
   },
 
+  [types.PUBLISH_POST] (state, id) {
+    axios.patch('/api/posts/publish/' + id)
+      .then((response) => {
+        state.post.is_publish = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+        state.message = error
+      })
+  },
+
   [types.FETCH_POSTS_SUCCESS] (state, { post }) {
     state.post = post
   },
@@ -59,6 +70,18 @@ export const mutations = {
 
   [types.FETCH_POST_BY_ID] (state, id) {
     axios.get('/api/posts/edit/' + id)
+      .then((response) => {
+        console.log(response)
+        state.post = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+        state.message = error
+      })
+  },
+
+  [types.FETCH_POSTS_BY_CATEGORY] (state, id) {
+    axios.get('/api/posts/byCategory/' + id)
       .then((response) => {
         console.log(response)
         state.post = response.data
@@ -90,6 +113,10 @@ export const actions = {
     commit(types.POST_UPDATE, post, id)
   },
 
+  publishPost ({ commit }, id) {
+    commit(types.PUBLISH_POST, id)
+  },
+
   async fetchPosts ({ commit }) {
     try {
       const { data } = await axios.get('/api/posts/index')
@@ -97,6 +124,10 @@ export const actions = {
     } catch (e) {
       commit(types.FETCH_POSTS_FAILURE)
     }
+  },
+
+  fetchByCategory ({ commit }, id) {
+    commit(types.FETCH_POSTS_BY_CATEGORY, id)
   },
 
   getPostById ({ commit }, id) {

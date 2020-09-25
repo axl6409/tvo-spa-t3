@@ -20,6 +20,20 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', 'Auth\UserController@current');
     Route::get('/profile', 'Bungie\ProfileController@index');
 
+    Route::prefix('/users')->group( function () {
+       Route::get('/all', 'Auth\UserController@all');
+       Route::post('/setAdmin/{id}', 'Auth\UserController@setUserAdmin');
+    });
+
+    Route::prefix('/roles')->group( function () {
+        Route::get('/all', 'Auth\RoleController@index');
+        Route::get('/permissions', 'Auth\RoleController@permissions');
+        Route::post('/store', 'Auth\RoleController@store');
+        Route::get('/edit/{id}', 'Auth\RoleController@edit');
+        Route::patch('/update/{id}', 'Auth\RoleController@update');
+        Route::delete('/delete/{id}', 'Auth\RoleController@destroy');
+    });
+
     Route::prefix('/manifest')->group( function () {
       Route::get('/check', 'Bungie\ManifestController@checkManifest');
       Route::get('/tables', 'Bungie\ManifestController@getAllTables');
@@ -34,6 +48,12 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/character/{item}', 'Bungie\ProfileController@getCharacterInfos');
     });
 
+    Route::prefix('/clan')->group( function () {
+       Route::get('/infos', 'Bungie\ClanController@infos');
+       Route::get('/members', 'Bungie\ClanController@members');
+       Route::get('/banner', 'Bungie\ClanController@getClanBanner');
+    });
+
     Route::prefix('/posts')->group( function () {
         Route::get('/index', 'Backend\PostController@index');
         Route::get('/create', 'Backend\PostController@create');
@@ -43,6 +63,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('/delete/{id}', 'Backend\PostController@destroy');
         Route::patch('/publish/{id}', 'Backend\PostController@publish');
         Route::get('/get/{id}', 'Frontend\PostController@get');
+        Route::get('/byCategory/{id}', 'Frontend\PostController@byCategory');
     });
 
     Route::prefix('/categories')->group( function () {
@@ -76,4 +97,8 @@ Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
+});
+
+Route::prefix('/clanManifest')->group( function () {
+    Route::get('/query/{table}/{id}','Bungie\ClanManifestController@getSingleDefinition');
 });

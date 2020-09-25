@@ -77,6 +77,11 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         $category = Category::findOrFail($id);
+        if ($request->image !== $category->image) {
+           $categoryImage = $category->image;
+           Storage::disk('public')->delete('category/'. $categoryImage);
+           Storage::disk('public')->delete('category/thumbnail/'. $categoryImage);
+        }
         $category->update($request->getValidRequest());
         return response()->json('Category Updated !', 200);
     }

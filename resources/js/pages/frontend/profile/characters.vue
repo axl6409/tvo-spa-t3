@@ -6,7 +6,7 @@
       </h2>
       <ul class="character-section-list">
         <li v-for="character in characters" :key="character" class="character-list-item">
-          <router-link :to="{ name: 'character' , params: { id: character} }" class="nav-link" active-class="active">
+          <router-link :to="{ name: 'character' , params: { id: character } }" class="nav-link" active-class="active">
             <!--<img :src="path + characters.infos" alt="">-->
             <character-card :character="character" />
           </router-link>

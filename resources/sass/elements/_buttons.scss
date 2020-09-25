@@ -99,3 +99,16 @@
   0% { background-color: $yellow0 }
   100% { background-color: $black0 }
 }
+
+.role-button {
+  width: 200px;
+  height: 80px;
+  text-align: center;
+  padding-top: 25px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  background-color: #1ca600;
+  border-radius: 10px;
+  color: white;
+}
