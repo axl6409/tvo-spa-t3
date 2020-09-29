@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Http;
 class ClanController extends Controller
 {
     protected $url = "https://www.bungie.net/Platform/GroupV2/";
+    protected $urlUser = "https://www.bungie.net/Platform/User/";
     protected $group;
     protected $clan;
 
@@ -41,6 +42,18 @@ class ClanController extends Controller
     public function getClanBanner() {
         $result = $this->doRequest($this->url . $this->clan .'/?components=100');
         $datas = $result['Response']['detail']['clanInfo']['clanBannerData'];
+        return response()->json($datas, 200);
+    }
+
+    public function adminsAndFounder() {
+        $result = $this->doRequest($this->url . $this->clan .'/AdminsAndFounder/');
+        $datas = $result['Response'];
+        return response()->json($datas, 200);
+    }
+
+    public function singleMember($id, $type) {
+        $result = $this->doRequest($this->urlUser .'GetMembershipsById/'. $id . '/'. $type .'/?components=100,300');
+        $datas = $result['Response'];
         return response()->json($datas, 200);
     }
 

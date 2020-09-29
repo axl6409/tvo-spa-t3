@@ -12,7 +12,7 @@ ul {
 }
 
 .main-container {
-  padding: 5% 0;
+  padding: 0;
 }
 
 .main-layout {
@@ -37,5 +37,18 @@ ul {
 .dropdown-dark {
   background-color: rgb(44,44,44);
   border-radius: 5px;
+}
+
+.list-table {
+  color: $white0;
+}
+.list-table tr {
+  padding: 5px 6px;
+  background-color: rgba(0,0,0,0.6);
+}
+.list-actions-col {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 

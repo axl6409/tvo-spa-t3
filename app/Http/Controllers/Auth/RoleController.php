@@ -33,9 +33,10 @@ class RoleController extends Controller
         return response()->json('Role created !', 200);
     }
 
-    public function show($id)
+    public function single($id)
     {
-
+        $role = Role::findOrFail($id);
+        return response()->json($role, 200);
     }
 
     public function edit($id)

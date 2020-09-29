@@ -1,8 +1,16 @@
+// Main
+.home-overlay {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to bottom, rgba(24, 28, 37, 0) 0%, rgba(24, 28, 37, 0.8) 100%);
+}
+
 // Intro
 .home-intro-container {
   position: relative;
   width: 100%;
-  height: 1050px;
+  height: 1080px;
+  padding-top: 7%;
 }
 
 .home-intro-title {
@@ -46,4 +54,200 @@
   font-size: 18px;
   letter-spacing: 1px;
   color: $white1;
+}
+
+// Clan Section
+
+.first-section {
+  width: 100%;
+  height: 1080px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.clan-info {
+  width: 100%;
+  height: 1080px;
+  background: linear-gradient(to bottom, rgba(24,28,37,0) 0%, rgba(24,28,37,0.8) 100%);
+}
+.clan-info-conditions {
+  width: 50%;
+  text-align: center;
+  padding: 2% 3%;
+  margin-left: 25%;
+  font-size: 20px;
+  color: #f2f2f2;
+  text-shadow: 0px 0px 2px black;
+}
+
+.clan-info-conditions ul {
+  text-align: left;
+  margin-left: 20%;
+}
+
+.first-section h3 {
+  text-align: center;
+  color: #515151;
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5% 25%;
+  text-shadow: 0px 0px 4px white;
+}
+
+.clan-infos-text {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2% 5%;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #dfdfdf;
+}
+
+.infos-container {
+  width: 35%;
+  text-shadow: 0px 0px 2px black;
+}
+
+// Section 1
+
+.activities {
+  width: 100%;
+  height: auto;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.activities-banner {
+  width: 100%;
+  background-color: #171717;
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 5% 5%;
+}
+
+.activities-list-item {
+  color: #f5f5f5;
+  font-size: 20px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.activities-title {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 40px;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  text-shadow: 0px 0px 2px white;
+}
+
+.activities-blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 10%;
+}
+
+.activities-text {
+  width: 45%;
+  margin: 15% 2%;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 35px;
+  color: $white1;
+  text-shadow: 0px 0px 4px black;
+}
+
+// Members
+
+.members {
+  width: 100%;
+  height: auto;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.activities-members {
+  width: 45%;
+}
+
+.home-members-banner {
+  background-color: #171717;
+  width: 100%;
+}
+
+.home-members-banner h2 {
+  font-size: 30px;
+  color: $white1;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 5%;
+}
+
+.home-members-block {
+  padding: 5% 10%;
+}
+
+.home-members-block-socials {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.home-members-block-socials img {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  width: 16%;
+}
+
+.home-members-block p {
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: white;
+  text-shadow: 0px 0px 2px black;
+}
+
+.home-members-block-discord img {
+  width: 100%;
+}
+
+// Footer
+.main-footer {
+  width: 100%;
+  background-color: #171717;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: $white1;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 5% 2%;
+}
+
+.footer-block-left a {
+  font-size: 50px;
+  letter-spacing: 10px;
+}
+
+.footer-block-center {
+  text-align: center;
+}
+
+.footer-block-right {
+  text-align: right;
 }

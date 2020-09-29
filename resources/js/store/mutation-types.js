@@ -37,6 +37,8 @@ export const FETCH_CLAN_MEMBERS = 'FETCH_CLAN_MEMBERS'
 
 // users.js
 export const FETCH_USERS = 'FETCH_USERS'
+export const FETCH_USER_INFOS = 'FETCH_USER_INFOS'
+export const FETCH_USER_BY_ID = 'FETCH_USER_BY_ID'
 export const DELETE_USER = 'DELETE_USER'
 export const ASSIGN_ROLE = 'ASSIGN_ROLE'
 

@@ -1,8 +1,14 @@
 <template>
-  <div class="home-title-container">
+  <div class="home-container">
     <homeIntro :infos="infos" />
 
-    <homeClan />
+    <homeClan :infos="infos" />
+
+    <homeSection1 />
+
+    <homeSection2 />
+
+    <Footer />
   </div>
 </template>
 
@@ -10,6 +16,9 @@
 
 import homeIntro from '../../components/sections/homeIntro'
 import homeClan from '../../components/sections/homeClan'
+import homeSection1 from '../../components/sections/homeSection1'
+import homeSection2 from '../../components/sections/homeSection2'
+import Footer from '../../components/Footer'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -17,7 +26,10 @@ export default {
 
   components: {
     homeIntro,
-    homeClan
+    homeClan,
+    homeSection1,
+    homeSection2,
+    Footer
   },
 
   data () {

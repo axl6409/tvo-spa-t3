@@ -22,7 +22,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('/users')->group( function () {
        Route::get('/all', 'Auth\UserController@all');
-       Route::post('/setAdmin/{id}', 'Auth\UserController@setUserAdmin');
+       Route::patch('/assignRole/{id}', 'Auth\UserController@setUserRole');
+       Route::delete('/delete/{id}', 'Auth\UserController@destroy');
+       Route::get('/single/{id}', 'Auth\UserController@single');
     });
 
     Route::prefix('/roles')->group( function () {
@@ -32,6 +34,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/edit/{id}', 'Auth\RoleController@edit');
         Route::patch('/update/{id}', 'Auth\RoleController@update');
         Route::delete('/delete/{id}', 'Auth\RoleController@destroy');
+        Route::get('/single/{id}', 'Auth\RoleController@single');
     });
 
     Route::prefix('/manifest')->group( function () {
@@ -51,7 +54,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::prefix('/clan')->group( function () {
        Route::get('/infos', 'Bungie\ClanController@infos');
        Route::get('/members', 'Bungie\ClanController@members');
+       Route::get('/admins-founder', 'Bungie\ClanController@adminsAndFounder');
        Route::get('/banner', 'Bungie\ClanController@getClanBanner');
+       Route::get('/single-member/{id}/{type}', 'Bungie\ClanController@singleMember');
     });
 
     Route::prefix('/posts')->group( function () {

@@ -1,5 +1,5 @@
 <template>
-  <table class="table post-table">
+  <table class="table list-table">
     <thead>
       <tr>
         <th scope="col">

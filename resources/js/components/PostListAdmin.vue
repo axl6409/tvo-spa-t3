@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table post-table">
+    <table class="table list-table">
       <tbody>
         <tr>
           <th scope="row">

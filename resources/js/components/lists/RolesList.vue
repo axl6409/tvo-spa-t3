@@ -1,7 +1,7 @@
 <template>
   <div class="roles-list">
     <h2>Rôles</h2>
-    <table class="table post-table">
+    <table class="table list-table">
       <thead>
         <tr>
           <th scope="col">

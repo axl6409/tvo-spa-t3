@@ -1,7 +1,7 @@
 <template>
   <div class="users-list">
     <h2>Utilisateurs</h2>
-    <table class="table post-table">
+    <table class="table list-table">
       <thead>
         <tr>
           <th scope="col">
@@ -16,7 +16,7 @@
           <th scope="col">
             Rôle
           </th>
-          <th scope="col">
+          <th scope="col" class="list-actions-col">
             Actions
           </th>
         </tr>
@@ -30,13 +30,13 @@
           <th>{{ user.bungie_id }}</th>
           <th>{{ user.role_id }}</th>
           <th>
-            <button class="delete-button" @click="deleteUser(user.id)">
-              <fa icon="times" fixed-width />
-            </button>
-            <button class="publish-button">
+            <button class="role-button btn btn-primary">
               <router-link :to="{ name: 'users.assign', params: { id: user.id } }">
-                <fa icon="paper-plane" fixed-width />
+                <fa icon="eye" fixed-width />
               </router-link>
+            </button>
+            <button class="role-button btn btn-danger" @click="deleteUser(user.id)">
+              <fa icon="times" fixed-width />
             </button>
           </th>
         </tr>
@@ -52,7 +52,6 @@ export default {
 
   data () {
     return {
-
     }
   },
 
@@ -65,6 +64,9 @@ export default {
   },
 
   methods: {
+    deleteUser (id) {
+      this.$store.dispatch('users/deleteUser', id)
+    }
   }
 
 }
