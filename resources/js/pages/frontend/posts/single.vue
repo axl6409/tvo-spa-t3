@@ -22,8 +22,7 @@
 import axios from 'axios'
 
 export default {
-
-  loading: true,
+  middleware: 'auth',
 
   props: ['id'],
 

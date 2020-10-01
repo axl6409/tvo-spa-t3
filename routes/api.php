@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth Only
 Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('/home', 'Frontend\HomeController@home');
-    Route::get('/user', 'Auth\UserController@current');
     Route::get('/profile', 'Bungie\ProfileController@index');
 
     Route::prefix('/users')->group( function () {
@@ -37,26 +37,12 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/single/{id}', 'Auth\RoleController@single');
     });
 
-    Route::prefix('/manifest')->group( function () {
-      Route::get('/check', 'Bungie\ManifestController@checkManifest');
-      Route::get('/tables', 'Bungie\ManifestController@getAllTables');
-      Route::get('/query/{table}/{id}', 'Bungie\ManifestController@getSingleDefinition');
-      Route::get('/definition/{def}', 'Bungie\ManifestController@getDefinition');
-    });
-
     Route::prefix('/profile')->group( function () {
         Route::get('/all', 'Bungie\ProfileController@index');
         Route::get('/data', 'Bungie\ProfileController@profileStats');
         Route::get('/characters', 'Bungie\Profilecontroller@characters');
         Route::get('/character/{item}', 'Bungie\ProfileController@getCharacterInfos');
-    });
-
-    Route::prefix('/clan')->group( function () {
-       Route::get('/infos', 'Bungie\ClanController@infos');
-       Route::get('/members', 'Bungie\ClanController@members');
-       Route::get('/admins-founder', 'Bungie\ClanController@adminsAndFounder');
-       Route::get('/banner', 'Bungie\ClanController@getClanBanner');
-       Route::get('/single-member/{id}/{type}', 'Bungie\ClanController@singleMember');
+        Route::get('/character/stats/{id}', 'Bungie\CharacterController@getCharacterStats');
     });
 
     Route::prefix('/posts')->group( function () {
@@ -95,6 +81,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('getCategories/{id}', 'Frontend\CategoryController@get');
 });
 
+// Public Only
 Route::group(['middleware' => 'guest:api'], function () {
 
     Route::post('login', 'Auth\LoginController@login');
@@ -104,6 +91,21 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
 
-Route::prefix('/clanManifest')->group( function () {
-    Route::get('/query/{table}/{id}','Bungie\ClanManifestController@getSingleDefinition');
+// Public & Auth
+Route::get('/user', 'Auth\UserController@current');
+
+Route::prefix('/clan')->group( function () {
+    Route::get('/infos', 'Bungie\ClanController@infos');
+    Route::get('/members', 'Bungie\ClanController@members');
+    Route::get('/admins-founder', 'Bungie\ClanController@adminsAndFounder');
+    Route::get('/banner', 'Bungie\ClanController@getClanBanner');
+    Route::get('/single-member/{id}/{type}', 'Bungie\ClanController@singleMember');
+    Route::get('/member/infos/{id}/{type}', 'Bungie\ClanController@memberInfos');
+});
+
+Route::prefix('/manifest')->group( function () {
+    Route::get('/check', 'Bungie\ManifestController@checkManifest');
+    Route::get('/tables', 'Bungie\ManifestController@getAllTables');
+    Route::get('/query/{table}/{id}','Bungie\ManifestController@getSingleDefinition');
+    Route::get('/definition/{def}', 'Bungie\ManifestController@getDefinition');
 });

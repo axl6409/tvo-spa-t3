@@ -19,13 +19,13 @@
           </router-link>
         </li>
         <li>
-          <a href="https://www.bungie.net/">Bungie</a>
+          <a href="https://www.bungie.net/" class="nav-link">Bungie</a>
         </li>
       </ul>
     </div>
     <div class="footer-block-right">
       <p>@Copyright:</p>
-      <p>Site conçu par :<a href="https://www.vector-web.fr/">Vector Web</a></p>
+      <p>Site conçu par :<a href="https://www.vectorweb.fr/" class="nav-link">Vector Web</a></p>
     </div>
   </div>
 </template>

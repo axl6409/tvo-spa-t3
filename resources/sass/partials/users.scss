@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 5% 1%;
 }
 
 .users-list {
@@ -22,7 +23,7 @@
 .user-view-title {
   text-align: center;
   font-size: 30px;
-  padding: 2% 2%;
+  letter-spacing: 2px;
   text-shadow: 0px 7px 14px #919191;
 }
 
@@ -30,6 +31,8 @@
   background-color: rgba(255,255,255,0.8);
   margin-top: 3%;
   padding: 10% 10%;
+}
+.suerblock ul {
   display: flex;
   flex-direction: row;
   justify-content: center;

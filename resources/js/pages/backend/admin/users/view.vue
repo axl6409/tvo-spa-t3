@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1 class="user-view-title">
-      Assigner un rôle
-    </h1>
     <div class="userblock">
+      <h1 class="user-view-title">
+        Assigner un rôle
+      </h1>
       <ul>
         <li class="user-name">
           {{ user.nickname }}
         </li>
         <li class="user-avatar">
-          <img :src="path + user.avatar" :alt="user.nickname">
+          <img :src="path + user.avatar" alt="user-avatar">
         </li>
       </ul>
       <form id="form" class="custom-form user-role-form" @submit.prevent="updateUser">
@@ -44,14 +44,12 @@ import { mapState } from 'vuex'
 
 export default {
 
-  filters: {
-  },
-
   props: ['id'],
 
   data () {
     return {
       userRole: '',
+      userInfos: null,
       path: 'https://www.bungie.net'
     }
   },

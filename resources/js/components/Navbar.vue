@@ -14,10 +14,10 @@
           <li v-if="user" class="nav-item">
             <router-link :to="{ name: 'characters' }" class="nav-link pl-3" active-class="active">
               <fa icon="user" fixed-width />
-              {{ $t('personnages') }}
+              {{ $t('characters') }}
             </router-link>
           </li>
-          <li class="nav-item">
+          <li v-if="user" class="nav-item">
             <router-link :to="{ name: 'posts' }" class="nav-link pl-3" active-class="active">
               <fa icon="user" fixed-width />
               {{ $t('guides') }}
@@ -31,7 +31,7 @@
             <a class="nav-link dropdown-toggle"
                href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             >
-              <img :src="user.photo_url" class="rounded-circle profile-photo mr-1">
+              <img :src="path + user.avatar" class="rounded-circle profile-photo mr-1" alt="user-avatar">
               {{ user.name }}
             </a>
             <div class="dropdown-menu dropdown-dark">
@@ -47,6 +47,9 @@
                 <fa icon="user" fixed-width />
                 {{ $t('Users') }}
               </router-link>
+              <button v-if="user.role_id < 2" class="manifest-btn btn btn-info" @click="checkManifest">
+                Check Manifest
+              </button>
             </div>
           </li>
           <!-- Guest -->
@@ -71,13 +74,16 @@
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
+import axios from 'axios'
 
 export default {
+
   components: {
     LocaleDropdown
   },
 
   data: () => ({
+    path: 'https://www.bungie.net/',
     appName: window.config.appName
   }),
 
@@ -92,6 +98,23 @@ export default {
       await this.$store.dispatch('auth/logout')
       // Redirect to login.
       this.$router.push({ name: 'login' })
+    },
+    checkManifest () {
+      axios.get('/api/manifest/check')
+        .then((response) => {
+          alert(response.data)
+        })
+        .catch(function (error) {
+          if (error.response) {
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          } else if (error.request) {
+            console.log(error.request)
+          } else {
+            console.log(error.config)
+          }
+        })
     }
   }
 }

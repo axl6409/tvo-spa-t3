@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <button v-if="bungieAuth" class="btn btn-light ml-auto" type="button" @click="login">
-      {{ $t('login_with') }}
+  <div class="login-with-bungie">
+    <img class="log-btn-ico" :src="logo_src">
+    <button v-if="bungieAuth" class="login-button" type="button" @click="login">
+      {{ $t('login with') }}
       <span>Bungie</span>
-      <img class="log-btn-ico" :src="logo_src">
     </button>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
 
   data () {
     return {
-      logo_src: 'storage/destiny-icon.ico'
+      logo_src: '/images/settings/destiny.png'
     }
   },
 

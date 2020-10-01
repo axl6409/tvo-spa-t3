@@ -1,33 +1,40 @@
 <template>
   <div class="single-character">
     <div class="character-banner">
-      <div class="character-banner-image" :src="path + characterEmblemBackground" :style="{ backgroundImage: `url('${path + characterEmblemBackground}')` }"></div>
+      <div class="character-banner-image" :src="path + characterEmblemBackground" :style="{ backgroundImage: `url('${path + characterEmblemBackground}')` }" />
     </div>
     <div class="character-head">
-      <div class="character-head-emblem" :src="path + characterEmblem" :style="{ backgroundImage: `url('${path + characterEmblem}')` }"></div>
+      <div class="character-head-emblem" :src="path + characterEmblem" :style="{ backgroundImage: `url('${path + characterEmblem}')` }" />
       <div class="character-head-block">
-        <h1 class="character-head-display-name">{{ user.name }}</h1>
+        <h1 class="character-head-display-name">
+          {{ user.name }}
+        </h1>
         <div class="character-head-infos">
-          <div class="character-infos-race">{{ characterClass }}</div>
-          <div class="character-infos-light">{{ characterLight }}</div>
+          <div class="character-infos-race">
+            {{ characterClass }}
+          </div>
+          <div class="character-infos-light">
+            {{ characterLight }}
+          </div>
         </div>
       </div>
     </div>
+    <characterStats :id="this.$route.params.id" />
   </div>
 </template>
 
 <script>
-import CharacterCard from '../../../components/CharacterCard'
+import CharacterStats from '../../../components/characters/CharacterStats'
 import axios from 'axios'
 import { mapGetters } from 'vuex'
 
 export default {
 
-  components: {
-    CharacterCard
-  },
+  middleware: 'auth',
 
-  props: ['id'],
+  components: {
+    CharacterStats
+  },
 
   data () {
     return {

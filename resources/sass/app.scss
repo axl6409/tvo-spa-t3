@@ -9,10 +9,11 @@
 @import 'elements/transitions';
 @import 'elements/logo';
 @import 'elements/characterCard';
-@import 'elements/profilStats';
+@import 'elements/characterStats';
 @import 'elements/posts';
 @import 'elements/forms';
 @import 'elements/banner';
+@import 'elements/lists';
 
 // partials
 @import 'partials/home';
@@ -25,3 +26,10 @@
 @import 'partials/edit';
 @import 'partials/users';
 @import 'partials/roles';
+@import 'partials/login';
+
+// responsive
+@media screen and (min-width: $L) {
+  @import 'responsive/large.scss';
+}
+

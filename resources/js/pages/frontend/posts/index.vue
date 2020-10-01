@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="public-posts">
     <h1 class="public-page-title">
       Les Guides
     </h1>
@@ -34,6 +34,8 @@ import { mapGetters } from 'vuex'
 import PostBlock from '../../../components/posts/PostBlock'
 
 export default {
+
+  middleware: 'auth',
 
   components: {
     PostBlock

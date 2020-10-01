@@ -2,7 +2,7 @@
   <div class="clan-section">
     <div class="first-section" :style="{ backgroundImage: `url('${imagePath}')`}">
       <div class="clan-info">
-        <h3>On connaît l'humilité d'un gardien dans son élévation, et sa patience dans l'adversité.</h3>
+        <h3>{{ $t('clan_devise')}}</h3>
         <div class="clan-info-conditions">
           <p>Le clan est ouvert à tous avec quelques conditions:</p>
           <ul>
@@ -26,7 +26,7 @@
             <p>Amusez-vous bien !</p>
           </div>
         </div>
-        <router-link :to="{ name: 'join' }">
+        <router-link :to="{ name: 'register' }">
           <button class="text-anime" @mouseenter="animeButton" @mouseleave="stopAnimeButton">
             Join Us
           </button>

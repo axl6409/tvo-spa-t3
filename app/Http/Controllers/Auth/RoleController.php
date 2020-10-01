@@ -16,11 +16,6 @@ class RoleController extends Controller
         return response()->json($roles, 200);
     }
 
-    public function create()
-    {
-
-    }
-
     public function store(Request $request)
     {
         $this->validate($request, [

@@ -6,7 +6,7 @@
       </div>
       <div class="home-members-block">
         <p>
-          Nous sommes présent sur Discord !
+          Nous sommes présent sur Discord, Steam et Bungie.net !
         </p>
         <div class="home-members-block-socials">
           <img :src="discordImage" alt="discord-logo">
@@ -21,7 +21,7 @@
             Vous devez avoir le jeu et un compte Bungie pour pouvoir vous incrire sur le Discord, le Clan ou même ce site.
           </p>
           <button class="text-anime" @mouseenter="animeButton" @mouseleave="stopAnimeButton">
-            Créer un compte bungie
+            <a class="btn-bungie-link" href="https://www.bungie.net/">Créer un compte bungie</a>
           </button>
         </div>
       </div>

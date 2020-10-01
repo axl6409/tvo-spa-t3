@@ -28,7 +28,7 @@
           </th>
           <th>{{ user.name }}</th>
           <th>{{ user.bungie_id }}</th>
-          <th>{{ user.role_id }}</th>
+          <th>{{ user.role_id | roleName }}</th>
           <th>
             <button class="role-button btn btn-primary">
               <router-link :to="{ name: 'users.assign', params: { id: user.id } }">
@@ -49,6 +49,21 @@
 import { mapState } from 'vuex'
 
 export default {
+
+  filters: {
+    roleName: function (value) {
+      if (!value) return ''
+      if (value === 1) {
+        return 'Admin'
+      }
+      if (value === 2) {
+        return 'Writer'
+      }
+      if (value === 3) {
+        return 'Guardian'
+      }
+    }
+  },
 
   data () {
     return {

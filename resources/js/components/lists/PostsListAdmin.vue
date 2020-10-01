@@ -2,19 +2,19 @@
   <table class="table list-table">
     <thead>
       <tr>
-        <th scope="col">
+        <th scope="col" class="head-col">
           #
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Title
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Is Publish
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Create At
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Actions
         </th>
       </tr>
@@ -27,17 +27,16 @@
         <th>{{ post.title | truncate }}</th>
         <th>{{ post.is_publish ? 'Publié' : 'Brouillon' }}</th>
         <th>{{ post.created_at }}</th>
-        <th>
-          <i class="fas fa-times" />
-          <button class="edit-button">
+        <th class="actions-list">
+          <button class="edit-button btn btn-primary">
             <router-link :to="{ name: 'posts.edit', params: { id: post.id } }">
               <fa icon="edit" fixed-width />
             </router-link>
           </button>
-          <button class="delete-button" @click="deletePost(post.id)">
+          <button class="delete-button btn btn-danger" @click="deletePost(post.id)">
             <fa icon="times" fixed-width />
           </button>
-          <button class="publish-button" @click="publishPost(post.id)">
+          <button class="publish-button btn btn-success" @click="publishPost(post.id)">
             <fa icon="paper-plane" fixed-width />
           </button>
         </th>

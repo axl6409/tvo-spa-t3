@@ -9,16 +9,11 @@ use Illuminate\Support\Facades\Http;
 
 class ClanController extends Controller
 {
-    protected $url = "https://www.bungie.net/Platform/GroupV2/";
+    protected $urlGroupV2 = "https://www.bungie.net/Platform/GroupV2/";
     protected $urlUser = "https://www.bungie.net/Platform/User/";
+    protected $url = "https://www.bungie.net/Platform";
     protected $group;
-    protected $clan;
-
-    public function __construct() {
-        $user = Auth::user();
-        $result = $this->doRequest($this->url .'User/'. $user->membership_type .'/'. $user->membership_id .'/0/1/?components=0');
-        $this->clan = $result['Response']['results']['0']['member']['groupId'];
-    }
+    protected $clan = "4109653";
 
     public function doRequest($path) {
         $request = Http::withHeaders([
@@ -28,25 +23,25 @@ class ClanController extends Controller
     }
 
     public function infos() {
-        $result = $this->doRequest($this->url . $this->clan .'/?components=100');
+        $result = $this->doRequest($this->urlGroupV2 . $this->clan .'/?components=100');
         $datas = $result['Response'];
         return response()->json($datas, 200);
     }
 
     public function members() {
-        $result = $this->doRequest($this->url . $this->clan .'/Members/?components=100');
+        $result = $this->doRequest($this->urlGroupV2 . $this->clan .'/Members/?components=100');
         $datas = $result['Response'];
         return response()->json($datas, 200);
     }
 
     public function getClanBanner() {
-        $result = $this->doRequest($this->url . $this->clan .'/?components=100');
+        $result = $this->doRequest($this->urlGroupV2 . $this->clan .'/?components=100');
         $datas = $result['Response']['detail']['clanInfo']['clanBannerData'];
         return response()->json($datas, 200);
     }
 
     public function adminsAndFounder() {
-        $result = $this->doRequest($this->url . $this->clan .'/AdminsAndFounder/');
+        $result = $this->doRequest($this->urlGroupV2 . $this->clan .'/AdminsAndFounder/');
         $datas = $result['Response'];
         return response()->json($datas, 200);
     }
@@ -55,6 +50,12 @@ class ClanController extends Controller
         $result = $this->doRequest($this->urlUser .'GetMembershipsById/'. $id . '/'. $type .'/?components=100,300');
         $datas = $result['Response'];
         return response()->json($datas, 200);
+    }
+
+    public function memberInfos($id, $type) {
+        $request = $this->doRequest($this->url .'/Destiny/'. $type .'/Profile/'. $id .'/?components=100');
+        $request = $request['Response'];
+        return response()->json($request, 200);
     }
 
 }
