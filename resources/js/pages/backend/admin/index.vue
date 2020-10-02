@@ -1,24 +1,21 @@
 <template>
-  <div>
+  <div class="admin-index">
     <h1>Dashboard</h1>
-    <button @click="checkManifest">
-      Check Manifest
-    </button>
 
     <div class="dashboard-lists">
       <div class="posts-list-admin">
-        <router-link :to="{ name: 'posts.create' }" class="nav-link" active-class="active">
-          <p class="new-post-btn">
+        <router-link :to="{ name: 'posts.create' }" class="nav-link add-post-button" active-class="active">
+          <button class="create-new-button">
             Créer Un nouveau Guide
-          </p>
+          </button>
         </router-link>
         <posts-list-admin />
       </div>
       <div class="categories-list-admin">
-        <router-link :to="{ name: 'categories.create' }" class="nav-link" active-class="active">
-          <p class="new-post-btn">
+        <router-link :to="{ name: 'categories.create' }" class="nav-link add-category-button" active-class="active">
+          <button class="create-new-button">
             Créer Une nouvelle Catégorie
-          </p>
+          </button>
         </router-link>
         <categories-list-admin />
       </div>
@@ -27,7 +24,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import PostsListAdmin from '../../../components/lists/PostsListAdmin'
 import CategoriesListAdmin from '../../../components/lists/CategoriesListAdmin'
 
@@ -44,23 +40,6 @@ export default {
   },
 
   methods: {
-    checkManifest () {
-      axios.get('/api/manifest/check')
-        .then((response) => {
-          alert(response.data)
-        })
-        .catch(function (error) {
-          if (error.response) {
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-          } else if (error.request) {
-            console.log(error.request)
-          } else {
-            console.log(error.config)
-          }
-        })
-    }
   }
 }
 </script>

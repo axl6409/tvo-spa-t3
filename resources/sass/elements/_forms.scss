@@ -19,6 +19,13 @@
   padding-left: 0;
 }
 
+.form-edit-title {
+  width: 100%;
+  color: $black0;
+  font-size: 25px;
+  text-align: center;
+}
+
 .form-errors-items {
   font-size: 17px;
   letter-spacing: 1px;
@@ -32,3 +39,25 @@
   margin-top: 5%;
   margin-bottom: 5%;
 }
+
+.form-custom-label {
+  color: $black0;
+}
+
+.custom-form {
+  padding: 2%;
+  background-color: #ffffffe3;;
+}
+
+.custom-form-fields {
+  background-color: rgba(0,0,0,0);
+  border-top: 0;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 0;
+}
+
+.custom-form-fields:focus {
+  box-shadow: 0 0 0 0.2rem rgb(6 181 0 / 56%);
+}
+

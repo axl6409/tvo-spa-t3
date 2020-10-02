@@ -1,5 +1,5 @@
 <template>
-  <table class="table post-table">
+  <table class="table list-table">
     <thead>
       <tr>
         <th scope="col">
@@ -7,12 +7,6 @@
         </th>
         <th scope="col">
           Name
-        </th>
-        <th scope="col">
-          Description
-        </th>
-        <th scope="col">
-          Create At
         </th>
         <th scope="col">
           Actions
@@ -25,16 +19,14 @@
           {{ category.id }}
         </th>
         <th>{{ category.name }}</th>
-        <th>{{ category.description }}</th>
-        <th>{{ category.created_at }}</th>
         <th>
           <i class="fas fa-times" />
-          <button class="edit-button">
+          <button class="edit-button btn btn-primary">
             <router-link :to="{ name: 'categories.edit', params: { id: category.id } }">
               <fa icon="edit" fixed-width />
             </router-link>
           </button>
-          <button class="delete-button" @click="deleteCategory(category.id)">
+          <button class="delete-button btn btn-danger" @click="deleteCategory(category.id)">
             <fa icon="times" fixed-width />
           </button>
         </th>

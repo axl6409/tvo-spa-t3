@@ -29,15 +29,57 @@
   text-align: center;
 }
 
-.edit-button {
-  background-color: rgba(0,0,0,0);
-  color: white;
-  padding: 2px 20px;
-  margin: 2px;
-  font-size: 20px;
-  border: 1px solid #f9e400;
-  border-radius: 5px;
+// Navbar
+
+.manifest-btn {
+  margin: 5% 17% 5% 17%;
+}
+
+// Home
+
+.btn-bungie-link {
+  color: $white0;
   text-decoration: none;
+}
+
+// Login
+
+.login-button {
+  width: 80%;
+  height: 60px;
+  margin-top: 5%;
+  background-color: transparent;
+  border: 7px double $white0;
+  color: $white0;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+// Posts
+
+.create-new-button {
+  border-radius: 0px;
+  border: 10px double #272727;
+  display: inline-block;
+  cursor: pointer;
+  color: #2a2a2a;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 24px;
+  text-decoration: none;
+}
+
+
+// Edit
+
+.edit-button {
+  font-size: 25px;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 1%;
 }
 .edit-button:hover {
   box-shadow: 0px 0px 5px 1px #908400;
@@ -47,26 +89,24 @@
 }
 
 .delete-button {
-  background-color: rgba(0,0,0,0);
-  color: white;
-  padding: 2px 20px;
-  margin: 2px;
-  font-size: 20px;
-  border: 1px solid #cd0013;
-  border-radius: 5px;
+  font-size: 25px;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 1%;
 }
 .delete-button:hover {
   box-shadow: 0px 0px 5px 1px #cd0013;
 }
 
 .publish-button {
-  background-color: rgba(0,0,0,0);
-  color: white;
-  padding: 2px 20px;
-  margin: 2px;
-  font-size: 20px;
-  border: 1px solid #2fdb00;
-  border-radius: 5px;
+  font-size: 25px;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 1%;
 }
 .publish-button:hover {
   box-shadow: 0px 0px 5px 1px #2fdb00;
@@ -98,4 +138,47 @@
 @keyframes pulse {
   0% { background-color: $yellow0 }
   100% { background-color: $black0 }
+}
+
+.role-button {
+  font-size: 25px;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+}
+.role-button, a svg {
+  color: $white0;
+}
+
+// Home
+
+.text-anime {
+  width: 35%;
+  height: 60px;
+  margin-left: 33%;
+  margin-top: 5%;
+  background-color: transparent;
+  border: 7px double white;
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+// Character
+
+// Stats
+
+.stats-button {
+  background: transparent;
+  border: 10px double #525252;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.stats-button:hover {
+  transform: translateY(-5px);
+  transition: 150ms ease-in;
+  text-shadow: 0px 6px 2px #727272;
+  box-shadow: 0px 4px 7px #727272;
 }

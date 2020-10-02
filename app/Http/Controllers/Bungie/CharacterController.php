@@ -31,4 +31,10 @@ class CharacterController extends Controller
         ])->get($path);
         return $request;
     }
+
+    public function getCharacterStats ($id) {
+        $result = $this->doRequest($this->url .'/Destiny2/'. $this->user->membership_type .'/Account/'. $this->user->membership_id.'/Character/'. $id .'/Stats/?components=100');
+        $result = $result['Response'];
+        return response()->json($result, 200);
+    }
 }

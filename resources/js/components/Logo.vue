@@ -108,7 +108,7 @@ export default {
         }, 200)
         .add({
           targets: svgLogo,
-          scale: [0.5, 1]
+          scale: [0, 0.6]
         })
     },
     logoRotation (element) {

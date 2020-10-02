@@ -1,20 +1,20 @@
 <template>
   <div class="profile">
     <div class="character-section">
-      <h2 class="character-section-title">
+      <h2 class="character-section-title black-banner">
         Personnages
       </h2>
       <ul class="character-section-list">
         <li v-for="character in characters" :key="character" class="character-list-item">
-          <router-link :to="{ name: 'character' , params: { id: character} }" class="nav-link" active-class="active">
+          <router-link :to="{ name: 'character' , params: { id: character } }" class="nav-link" active-class="active">
             <!--<img :src="path + characters.infos" alt="">-->
-            <character-card :character="character" />
+            <characterCard :character="character" />
           </router-link>
         </li>
       </ul>
     </div>
     <div class="profile-section">
-      <h2 class="profile-page-title">
+      <h2 class="profile-page-title black-banner">
         Stats du Compte
       </h2>
       <user-stats />
@@ -25,7 +25,7 @@
 <script>
 import axios from 'axios'
 import { mapGetters } from 'vuex'
-import CharacterCard from '../../../components/CharacterCard'
+import CharacterCard from '../../../components/characters/CharacterCard'
 import UserStats from '../../../components/UserStats'
 
 export default {
@@ -61,11 +61,6 @@ export default {
   },
 
   mounted () {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-
-      setTimeout(() => this.$nuxt.$loading.finish(), 500)
-    })
   },
 
   methods: {

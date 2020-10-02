@@ -17,6 +17,7 @@ return [
 
     'default' => env('DB_CONNECTION', 'mysql'),
     'sqlite'  => env('DB_CONNECTION_SQLITE', 'sqlite'),
+    'sqlite_banner' => env('DB_CONNECTION_SQLITE_BANNER', 'sqlite_banner'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +40,11 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE_SQLITE'),
+        ],
+
+        'sqlite_banner' => [
+            'driver' => 'sqlite',
+            'database' => env('DB_DATABASE_SQLITE_BANNER'),
         ],
 
         'mysql' => [

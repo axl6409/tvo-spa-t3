@@ -86,6 +86,7 @@ return [
         'en' => 'EN',
         'zh-CN' => '中文',
         'es' => 'ES',
+        'fr' => 'FR',
     ],
 
     /*
@@ -183,6 +184,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...

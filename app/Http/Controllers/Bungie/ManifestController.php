@@ -33,7 +33,7 @@ class ManifestController extends Controller
     public function initManifest()
     {
         $file = Storage::disk('bungie')->allFiles();
-        $manifest = pathinfo(database_path('/sqlite/'.$file[0]), PATHINFO_BASENAME);
+        $manifest = pathinfo(database_path('/sqlite/manifest/'.$file[0]), PATHINFO_BASENAME);
         return $manifest;
     }
 
@@ -82,7 +82,7 @@ class ManifestController extends Controller
 
     public function getManifest($url)
     {
-        $path = database_path('/sqlite/');
+        $path = database_path('/sqlite/manifest/');
         $file_path = fopen($path.$this->manifestNameToZip, 'w');
 
         $client = new Client();
@@ -96,14 +96,14 @@ class ManifestController extends Controller
     public function extractManifest($file)
     {
         $zip = new ZipArchive();
-        $zipfile = database_path('/sqlite/'.$file);
+        $zipfile = database_path('/sqlite/manifest/'.$file);
 
         if ($zip->open($zipfile) === true) {
-          $zip->extractTo(database_path('/sqlite/'));
+          $zip->extractTo(database_path('/sqlite/manifest/'));
           $zip->close();
         }
 
-        $this->localNameWithoutExt = pathinfo(database_path('/sqlite/'.$this->localManifest), PATHINFO_FILENAME);
+        $this->localNameWithoutExt = pathinfo(database_path('/sqlite/manifest/'.$this->localManifest), PATHINFO_FILENAME);
         rename(env('DB_PATH_SQLITE').$this->originalManifestName, env('DB_PATH_SQLITE').$this->originalNameWithoutExt.'.sqlite');
 
     }

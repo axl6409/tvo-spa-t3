@@ -64,7 +64,7 @@ return [
 
         'bungie' => [
           'driver' => 'local',
-          'root' => database_path('sqlite'),
+          'root' => database_path('sqlite/manifest/'),
         ],
 
         's3' => [

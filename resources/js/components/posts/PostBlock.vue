@@ -34,7 +34,6 @@ export default {
   methods: {
     startAnimation (element) {
       var hexagon = document.getElementsByClassName(element)
-      console.log('Start')
       anime({
         targets: hexagon,
         rotate: [0, 10],
@@ -44,7 +43,6 @@ export default {
 
     stopAnimation (element) {
       var hexagon = document.getElementsByClassName(element)
-      console.log('Stop')
       anime({
         targets: hexagon,
         rotate: [10, 0],

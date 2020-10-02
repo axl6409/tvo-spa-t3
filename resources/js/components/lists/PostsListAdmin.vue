@@ -1,20 +1,20 @@
 <template>
-  <table class="table post-table">
+  <table class="table list-table">
     <thead>
       <tr>
-        <th scope="col">
+        <th scope="col" class="head-col">
           #
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Title
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Is Publish
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Create At
         </th>
-        <th scope="col">
+        <th scope="col" class="head-col">
           Actions
         </th>
       </tr>
@@ -24,20 +24,19 @@
         <th scope="row">
           {{ post.id }}
         </th>
-        <th>{{ post.title }}</th>
+        <th>{{ post.title | truncate }}</th>
         <th>{{ post.is_publish ? 'Publié' : 'Brouillon' }}</th>
         <th>{{ post.created_at }}</th>
-        <th>
-          <i class="fas fa-times" />
-          <button class="edit-button">
+        <th class="actions-list">
+          <button class="edit-button btn btn-primary">
             <router-link :to="{ name: 'posts.edit', params: { id: post.id } }">
               <fa icon="edit" fixed-width />
             </router-link>
           </button>
-          <button class="delete-button" @click="deletePost(post.id)">
+          <button class="delete-button btn btn-danger" @click="deletePost(post.id)">
             <fa icon="times" fixed-width />
           </button>
-          <button class="publish-button">
+          <button class="publish-button btn btn-success" @click="publishPost(post.id)">
             <fa icon="paper-plane" fixed-width />
           </button>
         </th>
@@ -52,6 +51,18 @@ import { mapState } from 'vuex'
 
 export default {
 
+  filters: {
+    truncate: function (text) {
+      if (!text) return ''
+      text = text.toString()
+      if (text.length > 65) {
+        return text.substring(0, 65) + '...'
+      } else {
+        return text
+      }
+    }
+  },
+
   data () {
     return {
     }
@@ -63,9 +74,18 @@ export default {
 
   created () {
     this.$store.dispatch('posts/fetchPosts')
+    this.truncateTitle()
   },
 
   methods: {
+    truncateTitle () {
+      if (this.$store.state.posts.post.title > 10) {
+        return this.$store.state.posts.post.title.substring(0, 10) + '...'
+      }
+    },
+    publishPost (id) {
+      this.$store.dispatch('posts/publishPost', id)
+    },
     deletePost (postId) {
       this.$store.dispatch('posts/deletePost', postId)
     }

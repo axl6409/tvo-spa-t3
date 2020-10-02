@@ -1,10 +1,11 @@
 <template>
   <div class="row">
-    <div class="col-lg-8 m-auto">
+    <div class="col-lg-6 m-auto">
       <card :title="$t('register')">
-        <form @submit.prevent="register" @keydown="form.onKeydown($event)">
+        <h3>Vous devez avoir un compte Bungie.net pour pouvoir vous connecter au site !</h3>
+        <form class="form-log" @submit.prevent="register" @keydown="form.onKeydown($event)">
           <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
+            <div class="col-md-12 d-flex">
               <!-- GitHub Register Button -->
               <login-with-bungie />
             </div>
@@ -55,8 +56,8 @@ export default {
         // Update the user.
         await this.$store.dispatch('auth/updateUser', { user: data })
 
-        // Redirect home.
-        this.$router.push({ name: 'home' })
+        // Redirect Characters Page.
+        this.$router.push({ name: 'characters' })
       }
     }
   }

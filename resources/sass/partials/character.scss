@@ -1,9 +1,73 @@
+// Characters Page
+.character-section {
+  width: 100%;
+  margin-top: 4%;
+}
+
+.character-section ul {
+  padding-left: 0;
+  margin-top: 20%;
+  margin-bottom: 20%;
+}
+
+.character-section-title {
+  text-align: center;
+  color: white;
+  margin-bottom: 5%;
+}
+
+.character-section-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+// Profile Main Stats
+.profile-section {
+  width: 100%;
+}
+
+.profile-page-title {
+  color: #e7e7e7;
+  text-align: center;
+  text-shadow: 0px 0px 2px rgb(255 255 255 / 80%);
+}
+
+.profile-stats {
+  padding: 3% 8%;
+}
+
+.profile-stats-list {
+  width: 287px;
+  margin: 15px;
+  display: inline-block;
+  padding: 5px;
+  border-top: 4px solid rgba(255 223 0);
+  background-color: rgba(0 0 0 / 61%);
+}
+
+.profile-stats-title {
+  color: $white1;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+.profile-stats-value {
+  color: $white1;
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  background-color: rgba(0,0,0,0.2);
+  padding: 2px 10px;
+}
+
+
 .single-character {
   position: relative;
   height: 150px;
   width: 100%;
   flex-basis: 100%;
   padding: 40px 0 0;
+  box-shadow: 0px 5px 15px 5px rgba(0,0,0,0.7);
 }
 
 .character-banner {

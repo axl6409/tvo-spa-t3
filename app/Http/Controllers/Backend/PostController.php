@@ -68,6 +68,11 @@ class PostController extends Controller
     public function update(PostUpdateRequest $request, $id)
     {
         $post = Post::findOrFail($id);
+        if($request->image !== $post->image) {
+            $postImage = $post->image;
+            Storage::disk('public')->delete('post/'. $postImage);
+            Storage::disk('public')->delete('post/thumbnail/'. $postImage);
+        }
         $post->update($request->getValidRequest());
         return response()->json($request, 200);
     }
@@ -96,6 +101,13 @@ class PostController extends Controller
      * @param $id
      */
     public function publish($id) {
-        //
+        $post = Post::findOrFail($id);
+        if ($post->is_publish === 0) {
+            $post->update(array('is_publish' => '1'));
+            return response()->json('1', 200);
+        } else {
+            $post->update(array('is_publish' => '0'));
+            return response()->json('0', 200);
+        }
     }
 }

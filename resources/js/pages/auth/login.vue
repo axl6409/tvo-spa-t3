@@ -1,10 +1,10 @@
 <template>
   <div class="row">
-    <div class="col-lg-8 m-auto">
+    <div class="col-lg-6 m-auto">
       <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
+        <form class="form-log" @submit.prevent="login" @keydown="form.onKeydown($event)">
           <div class="form-group row">
-            <div class="col-md-7 d-flex">
+            <div class="col-md-12 d-flex">
               <login-with-bungie />
             </div>
           </div>
@@ -48,7 +48,7 @@ export default {
       // Fetch the user.
       await this.$store.dispatch('auth/fetchUser')
 
-      // Redirect home.
+      // Redirect Characters page.
       this.$router.push({ name: 'characters' })
     }
   }

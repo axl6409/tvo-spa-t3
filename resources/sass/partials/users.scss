@@ -1,0 +1,109 @@
+.admin-users-index {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5% 1%;
+}
+
+.users-list {
+  width: 48%;
+  margin: 1%;
+}
+
+.users-list h2 {
+  margin-bottom: 80px;
+}
+
+.list-table {
+  text-align: center;
+}
+
+// View
+
+.user-view-title {
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-shadow: 0px 7px 14px #919191;
+}
+
+.userblock {
+  background-color: rgba(255,255,255,0.8);
+  margin-top: 3%;
+  padding: 10% 10%;
+}
+.suerblock ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.userblock ul {
+  width: 48%;
+  display: inline-block;
+  padding: 2% 2%;
+}
+
+.user-role-form {
+  width: 48%;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.user-name {
+  font-size: 35px;
+  letter-spacing: 4px;
+  text-align: right;
+}
+
+.user-avatar {
+  text-align: right;
+}
+
+.user-role {
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.user-button {
+  margin-left: 40%;
+}
+
+// Card
+.user-card {
+  width: 80%;
+  height: 200px;
+  margin: 2%;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(0,0,0,0.8);
+  padding: 1%;
+  border-left: 4px solid yellow;
+}
+
+.user-card img {
+  width: 180px;
+  height: 180px;
+}
+
+.user-card-infos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5%;
+}
+
+.user-card-infos h3 {
+  font-size: 30px;
+  letter-spacing: 2px;
+  color: #e2e2e2;
+}
+
+.user-card-infos p {
+  font-size: 19px;
+  letter-spacing: 5px;
+  color: #e2e2e2;
+  text-shadow: 0px 0px 1px white;
+}

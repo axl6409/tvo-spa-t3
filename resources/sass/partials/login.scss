@@ -1,0 +1,44 @@
+.card-login {
+  margin-top: 30%;
+  background-color: transparent;
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: $white0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 25px;
+  letter-spacing: 4px;
+}
+
+.card-body {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.card-body h3 {
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 70%;
+  margin-left: 15%;
+}
+
+.form-log {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.login-with-bungie {
+  text-align: center;
+}
+.login-with-bungie img {
+  width: 100%;
+  background-color: $white0;
+  padding: 5%;
+}
+
