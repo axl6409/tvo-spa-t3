@@ -73,7 +73,6 @@ export default {
     getClanAdmins () {
       axios.get('/api/clan/admins-founder')
         .then((response) => {
-          console.log(response)
           this.users = response.data.results
         })
         .catch((error) => {

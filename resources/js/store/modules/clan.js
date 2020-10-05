@@ -20,7 +20,6 @@ export const mutations = {
   [types.FETCH_CLAN_INFOS] (state) {
     axios.get('/api/clan/infos')
       .then((response) => {
-        console.log(response)
         state.infos = response.data
       })
       .catch((error) => {
@@ -32,7 +31,6 @@ export const mutations = {
   [types.FETCH_CLAN_MEMBERS] (state) {
     axios.get('/api/clan/members')
       .then((response) => {
-        console.log(response)
         state.members = response.data
       })
       .catch((error) => {

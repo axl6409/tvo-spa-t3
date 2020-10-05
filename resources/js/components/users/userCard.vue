@@ -46,7 +46,6 @@ export default {
     getUserAvatar (id, type) {
       axios.get('/api/clan/single-member/' + id + '/' + type)
         .then((response) => {
-          console.log(response.data.bungieNetUser)
           this.avatar = response.data.bungieNetUser.profilePicturePath
           this.displayName = response.data.bungieNetUser.displayName
         })

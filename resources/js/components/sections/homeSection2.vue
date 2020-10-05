@@ -73,7 +73,6 @@ export default {
     getClanInfos () {
       axios.get('/api/clan/infos')
         .then((response) => {
-          console.log(response)
           this.infos = response.data
         })
         .catch((error) => {
@@ -83,7 +82,6 @@ export default {
     getClanMembers () {
       axios.get('/api/clan/members')
         .then((response) => {
-          console.log(response)
           this.users = response.data.results
         })
         .catch((error) => {
