@@ -27,7 +27,7 @@
           </div>
         </div>
         <router-link :to="{ name: 'register' }">
-          <button class="text-anime" @mouseenter="animeButton" @mouseleave="stopAnimeButton">
+          <button class="text-anime join-button" @mouseenter="animeButton" @mouseleave="stopAnimeButton">
             Join Us
           </button>
         </router-link>

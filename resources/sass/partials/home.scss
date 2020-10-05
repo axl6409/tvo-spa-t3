@@ -230,24 +230,34 @@
 .main-footer {
   width: 100%;
   background-color: #171717;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
   color: $white1;
   font-size: 20px;
   letter-spacing: 2px;
   padding: 5% 2%;
 }
-
-.footer-block-left a {
+.footer-site-title {
+  display: inline-block;
+  width: 20%;
+}
+.footer-site-title a {
   font-size: 50px;
   letter-spacing: 10px;
 }
 
-.footer-block-center {
+.footer-nav {
+  width: 70%;
+  display: inline-block;
   text-align: center;
 }
+.footer-nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-left: 0;
+}
 
-.footer-block-right {
-  text-align: right;
+.footer-copyright {
+  display: block;
+  width: 100%;
+  text-align: center;
 }

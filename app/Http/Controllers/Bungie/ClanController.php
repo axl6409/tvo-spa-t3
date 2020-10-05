@@ -12,7 +12,6 @@ class ClanController extends Controller
     protected $urlGroupV2 = "https://www.bungie.net/Platform/GroupV2/";
     protected $urlUser = "https://www.bungie.net/Platform/User/";
     protected $url = "https://www.bungie.net/Platform";
-    protected $group;
     protected $clan = "4109653";
 
     public function doRequest($path) {

@@ -6,7 +6,9 @@
       </router-link>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false">
-        <span class="navbar-toggler-icon" />
+        <span class="navbar-toggler-icon" >
+          <fa icon="bars" class="navbar-toggler-icon-bars" fixed-width />
+        </span>
       </button>
 
       <div id="navbarToggler" class="collapse navbar-collapse">

@@ -1,5 +1,5 @@
 <template>
-  <form id="form" class="custom-form" @submit.prevent="createCategory">
+  <form id="form" class="custom-form category-form" @submit.prevent="createCategory">
     <!-- Errors -->
     <div v-if="errors.length" class="form-errors-block">
       <p>Corriger les erreurs ci dessous:</p>

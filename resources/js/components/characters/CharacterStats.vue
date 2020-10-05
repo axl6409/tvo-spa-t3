@@ -3,37 +3,37 @@
     <h2>Statistiques</h2>
     <div class="character-stats-header">
       <ul>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.allPvP.allTime)">
             PvP
           </button>
         </li>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.patrol.allTime)">
             Patrouille
           </button>
         </li>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.raid.allTime)">
             Raid
           </button>
         </li>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.story.allTime)">
             Histoire
           </button>
         </li>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.allStrikes.allTime)">
             Assaut
           </button>
         </li>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.allPvE.allTime)">
             PvE
           </button>
         </li>
-        <li>
+        <li class="character-stats-btn-item">
           <button class="stats-button" @click="setStat(allStats.allPvECompetitive.allTime)">
             PvE (Competitive)
           </button>

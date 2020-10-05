@@ -35,15 +35,21 @@
 }
 
 .navbar-brand {
-  color: whitesmoke;
+  color: $white1;
 }
 .navbar-brand:hover {
-  color: yellow;
+  color: $yellow0;
 }
 
 .nav-link {
-  color: whitesmoke;
+  color: $white1;
 }
 .nav-link:hover {
-  color: yellow;
+  color: $yellow0;
+}
+
+.navbar-toggler-icon-bars {
+  color: $white0;
+  width: 100%;
+  height: 100%;
 }

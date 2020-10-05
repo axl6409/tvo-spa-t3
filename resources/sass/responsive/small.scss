@@ -1,0 +1,266 @@
+// Anime Logo
+#anime {
+  margin-top: 45%;
+}
+.svg-logo {
+  width: 23em;
+}
+
+// Navbar
+.navbar {
+  height: auto;
+}
+
+// Home - Intro
+.home-intro-container {
+  padding-top: 20%;
+}
+.home-intro-subtitle {
+  letter-spacing: 10px;
+}
+
+// Home - HomeClan
+.first-section {
+  height: auto;
+}
+.clan-info {
+  height: auto;
+}
+.clan-infos h3 {
+  text-align: left;
+  padding: 5% 8%;
+  line-height: 50px;
+}
+.clan-info-conditions {
+  width: 100%;
+  margin-left: 0;
+}
+.clan-infos-text {
+  flex-direction: column;
+}
+
+.infos-container {
+  padding: 5%;
+  width: 100%;
+}
+
+.join-button {
+  margin-bottom: 15%;
+}
+
+// Home - Section 1
+.activities-list {
+  text-align: center;
+  display: inline-block;
+  padding: 5% 26%;
+}
+.activities-blocks {
+  flex-direction: column;
+}
+.activities-text {
+  width: 100%;
+  margin: 0;
+  padding: 15% 2%;
+}
+
+.activities-members {
+  width: 100%;
+}
+.activities-members ul {
+  padding-left: 0;
+}
+.user-card {
+  width: 96%;
+  height: 90px;
+}
+.user-card img {
+  width: 80px;
+  height: 80px;
+}
+.user-card-infos {
+  padding: 2%;
+}
+.user-card-infos h3 {
+  font-size: 20px;
+}
+
+// Pages - Characters
+.character-section {
+  margin-top: 10%;
+}
+.character-section-list {
+  flex-direction: column;
+}
+.character-list-item {
+  margin-left: 4%;
+}
+
+// Character Block
+.character-block {
+  width: 320px;
+  height: 70px;
+}
+.character-class {
+  font-size: 20px;
+}
+.character-light {
+  font-size: 20px;
+}
+
+.profile-stats-list {
+  width: 94%;
+}
+
+// Pages - Character
+.character-head-block {
+  left: 15%;
+  width: 75%;
+}
+.character-head-emblem {
+  width: 70px;
+  height: 70px;
+  left: 10px;
+  top: 75px;
+}
+.character-head-block .character-head-display-name {
+  font-size: 21px;
+  top: 50px;
+}
+.character-head-infos {
+  top: 75px;
+  font-size: 14px;
+}
+.character-stats-header ul {
+  display: inherit;
+  flex-direction: inherit;
+}
+
+.stats-list-item {
+  width: 230px;
+  margin: 2%;
+}
+
+// Pages - Guides
+.categories-buttons {
+  display: inline-block;
+}
+.post-by-category-btn {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 38%;
+  height: 80px;
+}
+.public-posts {
+  padding: 12% 2%;
+}
+.posts-public-list ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 7%;
+}
+.post-block {
+  width: 58%;
+}
+
+// Pages - Guides Single
+.single-post-image img {
+  margin-top: 15%;
+  margin-bottom: 0;
+}
+.single-header {
+  position: inherit;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 5%;
+}
+.single-post-content {
+  padding: 2% 5%;
+}
+.single-post-content img {
+  width: 100%;
+}
+
+// Admin - Posts
+.admin-index {
+  padding-top: 5%;
+}
+.dashboard-lists {
+  flex-direction: column;
+}
+.posts-list-admin {
+  width: 98%;
+}
+.categories-list-admin {
+  width: 98%;
+}
+
+// Admin - Post Create & Edit
+.post-edit {
+  padding: 10% 5%;
+}
+
+// Admin - Category Create & Edit
+.category-form {
+  padding:52% 5%;
+}
+
+// Admin - User
+.admin-users-index {
+  flex-direction: column;
+  padding: 12% 1%;
+}
+.users-list {
+  width: 98%;
+}
+.roles_list {
+  width: 98%;
+}
+.userblock {
+  padding: 45% 10%;
+}
+.userblock ul {
+  width: 100%;
+}
+.user-name {
+  text-align: center;
+}
+.user-avatar {
+  text-align: center;
+}
+.user-role-form {
+  width: 100%;
+}
+
+// Buttons
+.text-anime {
+  height: auto;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.character-stats-btn-item {
+  display: inline-block;
+  padding: 2%;
+}
+
+.stats-button {
+  width: 200px;
+  background: #aee3ffba;
+}
+
+// Footer
+
+.footer-site-title {
+  width: 100%;
+  text-align: center;
+}
+
+.footer-nav-link {
+  font-size: 15px;
+}
+
+.footer-nav {
+  width: 100%;
+}

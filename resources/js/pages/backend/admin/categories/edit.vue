@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="createCategory">
+  <form class="category-form" @submit.prevent="createCategory">
     <!-- Title -->
     <div class="form-group">
       <label for="name" class="form-label">Name</label>

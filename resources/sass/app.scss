@@ -29,6 +29,9 @@
 @import 'partials/login';
 
 // responsive
+@media screen and (max-width: $S) {
+  @import 'responsive/small';
+}
 @media screen and (min-width: $L) {
   @import 'responsive/large.scss';
 }
