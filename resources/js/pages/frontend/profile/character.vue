@@ -74,7 +74,11 @@ export default {
     },
 
     getBackgroundEmblemByHash (def, id) {
-      axios.get(`/api/manifest/query/${def}/${id}`).then((response) => {
+      axios.get(`/api/manifest/query/${def}/${id}`, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      }).then((response) => {
         let result = response.data['0']['json']
         let result2 = JSON.parse(result)
         this.characterEmblemBackground = result2['secondarySpecial']
@@ -82,7 +86,11 @@ export default {
     },
 
     getEmblemByHash (def, id) {
-      axios.get(`/api/manifest/query/${def}/${id}`).then((response) => {
+      axios.get(`/api/manifest/query/${def}/${id}`, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      }).then((response) => {
         let result = response.data['0']['json']
         let result2 = JSON.parse(result)
         this.characterEmblem = result2['secondaryOverlay']
@@ -90,7 +98,11 @@ export default {
     },
 
     classHashTranslation (def, id, genderHash) {
-      axios.get(`/api/manifest/query/${def}/${id}`).then((response) => {
+      axios.get(`/api/manifest/query/${def}/${id}`, {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      }).then((response) => {
         let result = response.data['0']['json']
         let result2 = JSON.parse(result)
         this.characterClass = result2['genderedClassNamesByGenderHash'][genderHash]
