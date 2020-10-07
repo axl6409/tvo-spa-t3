@@ -1,0 +1,112 @@
+#anime {
+  margin-top: 10%;
+}
+.text-anime {
+  width: 45%;
+  height: 80px;
+  margin-left: 28%;
+}
+//Navbar Collapse
+.navbar-collapse {
+  background-color: $black0;
+}
+// Home - Clan
+.first-section {
+  height: auto;
+}
+.clan-info {
+  height: auto;
+}
+.join-button {
+  margin-bottom: 5%;
+}
+
+// Home - Section 1
+.activities-list {
+  text-align: center;
+  display: inline-block;
+  padding: 5% 26%;
+}
+.activities-blocks {
+  flex-direction: column;
+}
+.activities-text {
+  width: 100%;
+  margin: 0;
+  padding: 15% 2%;
+}
+.activities-list {
+  padding: 5% 37%;
+}
+.activities-members {
+  width: 100%;
+}
+.activities-members ul {
+  padding-left: 0;
+}
+.user-card {
+  width: 92%;
+  height: 90px;
+}
+.user-card img {
+  width: 80px;
+  height: 80px;
+}
+.user-card-infos {
+  padding: 2%;
+}
+.user-card-infos h3 {
+  font-size: 20px;
+}
+
+// Pages - Characters
+.character-section {
+  margin-top: 10%;
+}
+.character-section-list {
+  flex-direction: column;
+}
+.character-list-item {
+  margin-left: 4%;
+}
+
+// Footer
+.main-footer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.footer-site-title {
+  width: 100%;
+}
+.footer-nav {
+  width: 100%;
+}
+
+// Characters
+.character-section ul {
+  padding-left: 18%;
+}
+
+.character-stats-btn-item {
+  display: inline-block;
+  padding: 2%;
+  width: 220px;
+}
+
+.stats-button {
+  width: 200px;
+  background: #aee3ffba;
+}
+
+.character-stats-header ul {
+  display: inherit;
+  flex-direction: inherit;
+  padding-left: 19%;
+}
+
+.stats-list-item {
+  width: 342px;
+  margin: 1%;
+}
+

@@ -32,6 +32,10 @@
 @media screen and (max-width: $S) {
   @import 'responsive/small';
 }
+
+@media screen and (max-width: $M) {
+  @import 'responsive/medium';
+}
 @media screen and (min-width: $L) {
   @import 'responsive/large.scss';
 }
